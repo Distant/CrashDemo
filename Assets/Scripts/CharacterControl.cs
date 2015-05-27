@@ -15,6 +15,7 @@ public class CharacterControl : MonoBehaviour
 	private float jumpMoveSpeed = 2;
 
 	private float jumpSpeed = 6f;
+	private float terminalVelocity = -6f;
 	// Use this for initialization
 	void Start ()
 	{
@@ -28,7 +29,7 @@ public class CharacterControl : MonoBehaviour
 	{
 		CharacterController controller = GetComponent<CharacterController> ();
 		if (controller.isGrounded || !(Input.GetAxis ("Horizontal") == 0) || ! (Input.GetAxis ("Vertical") == 0)) {
-			velocity = new Vector3 (Input.GetAxis ("Horizontal"), controller.velocity.y, Input.GetAxis ("Vertical"));
+			velocity = new Vector3 (Input.GetAxis ("Horizontal"), velocity.y, Input.GetAxis ("Vertical"));
 			velocity = transform.TransformDirection (velocity);
 			velocity.x *= controller.isGrounded ? moveSpeed : jumpMoveSpeed;
 			velocity.z *= controller.isGrounded ? moveSpeed : jumpMoveSpeed;
@@ -37,8 +38,9 @@ public class CharacterControl : MonoBehaviour
 				velocity.y = jumpSpeed;
 			}
 		}
+
 		// Apply gravity
-		velocity.y -= 16* Time.deltaTime;
+		if (!controller.isGrounded && velocity.y > terminalVelocity) velocity.y -= 16* Time.deltaTime;
 		
 		// Move the controller
 		controller.Move(velocity * Time.deltaTime);
@@ -49,20 +51,8 @@ public class CharacterControl : MonoBehaviour
 		}
 	}
 
-	public void OnCollisionEnter (Collision col) // no longer using rigidbody
-	{
-		if (col.contacts.Length > 0) {
-			ContactPoint[] c = col.contacts;
-			if (Vector3.Dot (c [0].normal, Vector3.up) > 0.5f) {
-				if (col.gameObject.tag == "Box"){
-					state = 1;
-					Vector3 velocity = rigidBody.velocity;
-					velocity.y = 5f;
-				} else {
-					state = 0;
-				}
-			}
-		}
+	public void Jump(float speed){
+		velocity.y = speed;
 	}
 
 	public void Die(){

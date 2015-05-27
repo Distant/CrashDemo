@@ -21,6 +21,7 @@ public class Box : MonoBehaviour
 	{
 		if (col.tag == "Player") {
 			inventoryManager.addWumpas (5);
+			col.GetComponent<CharacterControl>().Jump(5f);
 			gameObject.SetActive (false);
 		}
 	}
