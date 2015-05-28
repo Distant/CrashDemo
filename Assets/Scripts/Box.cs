@@ -4,6 +4,7 @@ using System.Collections;
 public class Box : MonoBehaviour
 {
 	private InventoryManager inventoryManager;
+	private CharacterControl player;
 
 	// Use this for initialization
 	void Start ()
@@ -20,7 +21,7 @@ public class Box : MonoBehaviour
 	public void OnTriggerEnter (Collider col)
 	{
 		if (col.tag == "Player") {
-			CharacterControl player = col.GetComponentInParent<CharacterControl>();
+			player = col.GetComponentInParent<CharacterControl>();
 
 			if (col.transform.position.y > transform.position.y + 0.5f) {
 				if (player.Spinning) {
@@ -45,6 +46,7 @@ public class Box : MonoBehaviour
 
 	public void Remove(){
 		inventoryManager.addWumpas (5);
+		//player.NotTouching (this);
 		gameObject.SetActive (false);
 	}
 }

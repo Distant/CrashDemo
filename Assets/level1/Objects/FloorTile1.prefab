@@ -13,7 +13,7 @@ GameObject:
   - 95: {fileID: 9550566}
   - 65: {fileID: 6549032}
   m_Layer: 0
-  m_Name: FloorTile
+  m_Name: FloorTile1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
