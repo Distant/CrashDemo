@@ -77,7 +77,7 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 				flipping = false;
 				break;
 			}
-			playerModel.transform.Rotate(targetDir, 8);
+			playerModel.transform.Rotate(targetDir, 7.5f);
 			yield return new WaitForEndOfFrame();
 		}
 	}
