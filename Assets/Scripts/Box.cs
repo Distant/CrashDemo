@@ -20,9 +20,12 @@ public class Box : MonoBehaviour
 	public void OnTriggerEnter (Collider col)
 	{
 		if (col.tag == "Player") {
-			inventoryManager.addWumpas (5);
-			col.GetComponent<CharacterControl>().Jump(5f);
-			gameObject.SetActive (false);
+			if (false)
+				col.GetComponentInParent<CharacterControl> ().Jump (5f);
+			if (true && col.GetComponentInParent<CharacterControl> ().Spinning) { // if hit from top, or side and spinning
+				inventoryManager.addWumpas (5);
+				gameObject.SetActive (false);
+			}
 		}
 	}
 }

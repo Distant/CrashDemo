@@ -68,7 +68,7 @@ public class CameraFollow : MonoBehaviour
 
 		float heightOffset = CurrentEdge.node1.heightOffset + (CurrentEdge.node2.heightOffset - CurrentEdge.node1.heightOffset) * ratio;
 
-		float yPos = CurrentEdge.followPlayer ? player.transform.position.y + 2f + heightOffset : player.GetComponent<CharacterControl> ().height + 2f + heightOffset;
+		float yPos = CurrentEdge.followPlayer ? player.transform.position.y + 2f + heightOffset : player.GetComponentInChildren<CharacterControl> ().height + 2f + heightOffset;
 
 		Vector3 newPos = new Vector3 (CurrentEdge.node1.transform.position.x + (CurrentEdge.node2.transform.position.x - CurrentEdge.node1.transform.position.x) * ratio, yPos, CurrentEdge.node1.transform.position.z + nodeDist.z * ratio - (CurrentEdge.node1.cameraDist - cameraDist * ratio));
 		this.transform.position = Vector3.Lerp (this.transform.position, newPos, timeStep * Time.deltaTime);
