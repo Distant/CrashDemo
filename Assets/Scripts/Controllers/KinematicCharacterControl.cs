@@ -11,7 +11,7 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 	private Rigidbody rigidBody;
 	private LevelManager manager;
 	Vector3 velocity = Vector3.zero;
-	private float moveSpeed = 2;
+	private float moveSpeed = 2f;
 	private float jumpMoveSpeed = 2;
 
 	public float height { get; private set;}
@@ -98,5 +98,9 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 	public void Die(){
 		transform.position = initialPosition;
 		manager.death ();
+	}
+
+	public void Stop(){
+		velocity.y = 0;
 	}
 }

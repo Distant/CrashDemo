@@ -110,5 +110,7 @@ public class RigidCharacterControl : MonoBehaviour, CharacterControl
 	{
 		get {return Physics.Raycast (transform.position, -Vector3.up, distToGround + 0.1f) || rigidBody.velocity.y == 0;}
 	}
+	public void Stop(){
+	}
 
 }
