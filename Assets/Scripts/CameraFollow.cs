@@ -40,8 +40,8 @@ public class CameraFollow : MonoBehaviour
 		foreach (CameraEdge edge in edges.OrderBy (e => MinimumDistance3D (e.node1.transform.position,
 		                                                    e.node2.transform.position, 
 		                                                    player.transform.position)).ToArray ()) {
-			if (edge.followPlayer) {
-				if (edge.minHeight < player.transform.position.y && edge.maxHeight > player.transform.position.y) {
+			if (edge.minHeight != 0 || edge.maxHeight != 0) {
+				if ((edge.minHeight == 0 ? true : player.transform.position.y > edge.minHeight) && (edge.maxHeight == 0 ? true : player.transform.position.y < edge.maxHeight) ) {
 					CurrentEdge = edge;
 					break;
 				}

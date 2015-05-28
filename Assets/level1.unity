@@ -860,8 +860,8 @@ MonoBehaviour:
   node1: {fileID: 1268115278}
   node2: {fileID: 523267260}
   followPlayer: 0
-  minHeight: 0
-  maxHeight: 2.5999999
+  minHeight: 2.5999999
+  maxHeight: 0
 --- !u!1 &523267258
 GameObject:
   m_ObjectHideFlags: 0

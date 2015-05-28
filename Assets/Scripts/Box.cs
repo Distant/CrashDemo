@@ -20,18 +20,31 @@ public class Box : MonoBehaviour
 	public void OnTriggerEnter (Collider col)
 	{
 		if (col.tag == "Player") {
+			CharacterControl player = col.GetComponentInParent<CharacterControl>();
+
 			if (col.transform.position.y > transform.position.y + 0.5f) {
-				if (col.GetComponentInParent<CharacterControl> ().Spinning) {
-					col.GetComponentInParent<CharacterControl> ().Stop ();
+				if (player.Spinning) {
+					player.Stop ();
 				} else
-					col.GetComponentInParent<CharacterControl> ().Jump (5f);
-				inventoryManager.addWumpas (5);
-				gameObject.SetActive (false);
+					player.Jump (5f);
+				Remove ();
 			}
-			else if (col.GetComponentInParent<CharacterControl> ().Spinning) {
-				inventoryManager.addWumpas (5);
-				gameObject.SetActive (false);
+			else if (player.Spinning) {
+				Remove();
+			} else {
+				player.Touching(this);
 			}
 		}
+	}
+	public void OnTriggerExit (Collider col){
+		if (col.tag == "Player") {
+			CharacterControl player = col.GetComponentInParent<CharacterControl> ();
+			player.NotTouching(this);
+		}
+	}
+
+	public void Remove(){
+		inventoryManager.addWumpas (5);
+		gameObject.SetActive (false);
 	}
 }
