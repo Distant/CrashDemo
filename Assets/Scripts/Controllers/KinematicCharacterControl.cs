@@ -84,7 +84,10 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 
 	public void Spin (){
 		Spinning = true;
-		foreach (Box box in touching){box.Remove();}
+		foreach (Box box in touching){
+			if(box.gameObject.activeSelf)
+			box.Remove();
+		}
 		StartCoroutine (SpinAnim ());
 	}
 
