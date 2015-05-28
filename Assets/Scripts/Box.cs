@@ -46,7 +46,6 @@ public class Box : MonoBehaviour
 
 	public void Remove(){
 		inventoryManager.addWumpas (5);
-		//player.NotTouching (this);
 		gameObject.SetActive (false);
 	}
 }

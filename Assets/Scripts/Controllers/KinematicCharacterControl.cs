@@ -85,8 +85,9 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 	public void Spin (){
 		Spinning = true;
 		foreach (Box box in touching) {
-			box.Remove ();
+			box.Remove();
 		}
+		touching.Clear ();
 		StartCoroutine (SpinAnim ());
 	}
 
@@ -119,6 +120,7 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 	}
 
 	public void NotTouching(Box box){
+		if (touching.Contains(box))
 		touching.Remove (box);
 	}
 }
