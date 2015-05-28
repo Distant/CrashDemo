@@ -41,7 +41,7 @@ public class CameraFollow : MonoBehaviour
 		                                                    e.node2.transform.position, 
 		                                                    player.transform.position)).ToArray ()) {
 			if (edge.followPlayer) {
-				if (edge.activationHeight < player.transform.position.y) {
+				if (edge.minHeight < player.transform.position.y && edge.maxHeight > player.transform.position.y) {
 					CurrentEdge = edge;
 					break;
 				}
@@ -51,9 +51,9 @@ public class CameraFollow : MonoBehaviour
 			}
 		}
 				       
-		Vector3 playerPos = player.position; playerPos.y = 0;
-		Vector3 nodePos = CurrentEdge.node1.transform.position; nodePos.y = 0;
-		Vector3 nextNodePos = CurrentEdge.node2.transform.position; nextNodePos.y = 0;
+		Vector3 playerPos = player.position;;
+		Vector3 nodePos = CurrentEdge.node1.transform.position;;
+		Vector3 nextNodePos = CurrentEdge.node2.transform.position;
 		Vector3 nodesVec = nextNodePos - nodePos;
 
 		Vector3 nodeDist = (CurrentEdge.node2.transform.position - CurrentEdge.node1.transform.position);
@@ -68,7 +68,7 @@ public class CameraFollow : MonoBehaviour
 
 		float heightOffset = CurrentEdge.node1.heightOffset + (CurrentEdge.node2.heightOffset - CurrentEdge.node1.heightOffset) * ratio;
 
-		float yPos = CurrentEdge.followPlayer ? player.transform.position.y + 2f + heightOffset : player.GetComponentInChildren<CharacterControl> ().height + 2f + heightOffset;
+		float yPos = CurrentEdge.followPlayer ? player.transform.position.y + 1.5f : player.GetComponentInChildren<CharacterControl> ().height + 2f + heightOffset;
 
 		Vector3 newPos = new Vector3 (CurrentEdge.node1.transform.position.x + (CurrentEdge.node2.transform.position.x - CurrentEdge.node1.transform.position.x) * ratio, yPos, CurrentEdge.node1.transform.position.z + nodeDist.z * ratio - (CurrentEdge.node1.cameraDist - cameraDist * ratio));
 		this.transform.position = Vector3.Lerp (this.transform.position, newPos, timeStep * Time.deltaTime);

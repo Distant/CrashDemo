@@ -12,4 +12,6 @@ public interface CharacterControl
 	IEnumerator SpinAnim ();
 	void Stop();
 	void Die ();
+	void Touching(Box box);
+	void NotTouching(Box box);
 }

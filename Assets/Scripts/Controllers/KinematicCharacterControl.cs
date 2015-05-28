@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 {
@@ -19,6 +20,10 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 
 	private float jumpSpeed = 6f;
 	private float terminalVelocity = -6f;
+
+	private List<Box> touching = new List<Box>();
+
+	private bool flipping;
 	// Use this for initialization
 	void Start ()
 	{
@@ -57,17 +62,19 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 
 	public void Jump(float speed){
 		velocity.y = speed;
-		if ((velocity.z != 0 || velocity.x !=0) && !Spinning) {
+		if ((velocity.z != 0 || velocity.x !=0) && !Spinning &&!flipping) {
 			StartCoroutine(Flip(new Vector3(Input.GetAxis ("Horizontal"),0, Input.GetAxis ("Vertical"))));
 		}
 	}
 
 	public IEnumerator Flip(Vector3 dir){
 		yield return new WaitForEndOfFrame();
+		flipping = true;
 		Vector3 targetDir = (Quaternion.Euler (0, 90, 0) * dir).normalized;
 		while(true){
 			if (controller.isGrounded || Spinning) {
 				playerModel.transform.rotation = Quaternion.identity;
+				flipping = false;
 				break;
 			}
 			playerModel.transform.Rotate(targetDir, 8);
@@ -77,6 +84,7 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 
 	public void Spin (){
 		Spinning = true;
+		foreach (Box box in touching){box.Remove();}
 		StartCoroutine (SpinAnim ());
 	}
 
@@ -102,5 +110,13 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 
 	public void Stop(){
 		velocity.y = 0;
+	}
+
+	public void Touching(Box box){
+		touching.Add (box);
+	}
+
+	public void NotTouching(Box box){
+		touching.Remove (box);
 	}
 }

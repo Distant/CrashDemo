@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class RigidCharacterControl : MonoBehaviour, CharacterControl
 {
@@ -18,6 +19,8 @@ public class RigidCharacterControl : MonoBehaviour, CharacterControl
 
 	private float jumpSpeed = 6f;
 	private float distToGround;
+
+	private List<Box> touching = new List<Box>();
 	// Use this for initialization
 	void Start ()
 	{
@@ -110,7 +113,14 @@ public class RigidCharacterControl : MonoBehaviour, CharacterControl
 	{
 		get {return Physics.Raycast (transform.position, -Vector3.up, distToGround + 0.1f) || rigidBody.velocity.y == 0;}
 	}
+
 	public void Stop(){
 	}
-
+	public void Touching(Box box){
+		touching.Add (box);
+	}
+	
+	public void NotTouching(Box box){
+		touching.Remove (box);
+	}
 }
