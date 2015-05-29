@@ -9,6 +9,7 @@ public class RigidCharacterControl : MonoBehaviour, CharacterControl
 	public int state = 0;
 	public Vector3 initialPosition;
 	private Rigidbody rigidBody;
+	public Vector3 Velocity {get {return rigidBody.velocity;}}
 	private LevelManager manager;
 	Vector3 velocity = Vector3.zero;
 	private float moveSpeed = 2;
@@ -16,6 +17,7 @@ public class RigidCharacterControl : MonoBehaviour, CharacterControl
 
 	public float height { get; private set; }
 	public bool Spinning { get; private set; }
+	public bool Jumping { get; private set; }
 
 	private float jumpSpeed = 6f;
 	private float distToGround;
@@ -98,7 +100,6 @@ public class RigidCharacterControl : MonoBehaviour, CharacterControl
 			playerModel.transform.Rotate (new Vector3 (0, 1, 0), 16);
 			yield return new WaitForEndOfFrame ();
 		}
-		Vector3 rot = playerModel.transform.rotation.eulerAngles;
 		playerModel.transform.rotation = Quaternion.Euler (0, 0, 0);
 		Spinning = false;
 	}

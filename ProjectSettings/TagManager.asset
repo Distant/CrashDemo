@@ -8,6 +8,7 @@ TagManager:
   - Fire
   - LevelManager
   - Box
+  - EndTrigger
   layers:
   - Default
   - TransparentFX

@@ -24,4 +24,8 @@ public class LevelManager : MonoBehaviour {
 			box.gameObject.SetActive(true);
 		}
 	}
+
+	public void EndLevel(){
+		inventoryManager.VerifyBoxCount ();
+	}
 }

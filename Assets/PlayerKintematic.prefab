@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 476282}
   - 143: {fileID: 14382242}
   - 114: {fileID: 11484724}
+  - 65: {fileID: 6553528}
   m_Layer: 0
   m_Name: PlayerKintematic
   m_TagString: Player
@@ -25,7 +26,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 459522}
-  - 65: {fileID: 6592368}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Player
@@ -81,7 +81,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 120312}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0999999046, y: .899999976, z: 20.6000004}
+  m_LocalPosition: {x: -5.5170002, y: .899999976, z: 29.1630001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 405202}
@@ -119,17 +119,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 132678}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &6592368
+--- !u!65 &6553528
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 126420}
+  m_GameObject: {fileID: 120312}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: .300000012, y: .800000012, z: .300000012}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11484724
 MonoBehaviour:

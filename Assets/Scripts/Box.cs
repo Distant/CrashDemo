@@ -18,25 +18,27 @@ public class Box : MonoBehaviour
 	
 	}
 
-	public void OnTriggerEnter (Collider col)
-	{
-		if (col.tag == "Player") {
-			player = col.GetComponentInParent<CharacterControl>();
+	public void HitPlayer(GameObject g){
+		player = g.GetComponent<CharacterControl>();
+		if (g.transform.position.y > transform.position.y + 0.5f && (player.Velocity.y < -2f || player.Jumping)) {
+			if (player.Spinning) {
+				player.Stop ();
+			} else{
+			    player.Jump (5f);}
+			Break ();
+		}
+		else if (player.Spinning) {
+			Break();
+		} 
+	}
 
-			if (col.transform.position.y > transform.position.y + 0.5f) {
-				if (player.Spinning) {
-					player.Stop ();
-				} else
-					player.Jump (5f);
-				Remove ();
-			}
-			else if (player.Spinning) {
-				Remove();
-			} else {
-				player.Touching(this);
-			}
+	public void OnTriggerEnter (Collider col){
+		if (col.tag == "Player") {
+			CharacterControl player = col.GetComponentInParent<CharacterControl> ();
+			player.Touching(this);
 		}
 	}
+
 	public void OnTriggerExit (Collider col){
 		if (col.tag == "Player") {
 			CharacterControl player = col.GetComponentInParent<CharacterControl> ();
@@ -44,8 +46,8 @@ public class Box : MonoBehaviour
 		}
 	}
 
-	public void Remove(){
-		inventoryManager.addWumpas (5);
+	public void Break(){
+		inventoryManager.BreakBox (5);
 		gameObject.SetActive (false);
 	}
 }

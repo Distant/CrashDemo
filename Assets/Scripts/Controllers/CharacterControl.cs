@@ -4,7 +4,9 @@ using System.Collections;
 public interface CharacterControl
 {
 	bool Spinning { get; }
+	bool Jumping { get; }
 	float height { get; }
+	Vector3 Velocity {get;}
 
 	void Jump (float speed);
 	void Spin ();
