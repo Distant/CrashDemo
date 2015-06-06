@@ -15,7 +15,17 @@ public class InventoryManager : MonoBehaviour {
 	private bool counting;
 
 	private int boxCount;
-	private readonly int boxTotal = 13;
+    private int boxTotal;
+
+    [SerializeField]
+    private RectTransform inventoryPanel;
+    private Vector3 hiddenPosition = new Vector3(0, 100, 0);
+    private Vector3 expandedPosition = new Vector3(0, -20, 0);
+    private bool expanding;
+
+    public void init(int boxCount) {
+        boxTotal = boxCount;
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -24,8 +34,35 @@ public class InventoryManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Input.GetKeyDown(KeyCode.F)) {
+            StartCoroutine(ExpandInventory());
+        }
 	
 	}
+
+    public IEnumerator ExpandInventory() {
+        while (true) {
+            inventoryPanel.anchoredPosition = inventoryPanel.anchoredPosition - new Vector2(0, 4f);
+            if (inventoryPanel.anchoredPosition.y < expandedPosition.y + 1f) {
+                inventoryPanel.anchoredPosition = expandedPosition;
+                break;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForSeconds(1.5f);
+
+        while (true)
+        {
+            inventoryPanel.anchoredPosition = inventoryPanel.anchoredPosition + new Vector2(0, 4f);
+            if (inventoryPanel.anchoredPosition.y > hiddenPosition.y - 1f)
+            {
+                inventoryPanel.anchoredPosition = hiddenPosition;
+                break;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
 	public int Wumpas(){
 		return wumpas;

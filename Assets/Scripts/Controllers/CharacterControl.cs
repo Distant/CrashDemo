@@ -10,7 +10,7 @@ public interface CharacterControl
 
 	void Jump (float speed);
 	void Spin ();
-	IEnumerator Flip (Vector3 dir);
+	IEnumerator FlipAnim (Vector3 dir);
 	IEnumerator SpinAnim ();
 	void Stop();
 	void Die ();

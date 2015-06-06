@@ -37,7 +37,7 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _EmissionMap
+          name: _DecalTex
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -45,6 +45,20 @@ Material:
       data:
         first:
           name: _ParallaxMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _OcclusionMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _EmissionMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -65,14 +79,28 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _OcclusionMap
+          name: _MetallicGlossMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _MetallicGlossMap
+          name: _GlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _TranslucencyMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ShadowOffset
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -81,7 +109,15 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: .216999993
+        second: .430999994
+      data:
+        first:
+          name: _Shininess
+        second: .078125
+      data:
+        first:
+          name: PixelSnap
+        second: 0
       data:
         first:
           name: _SrcBlend
@@ -101,7 +137,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: .150000006
+        second: .200000003
       data:
         first:
           name: _BumpScale
@@ -120,12 +156,12 @@ Material:
         second: 0
       data:
         first:
-          name: _Mode
-        second: 2
-      data:
-        first:
           name: _EmissionScaleUI
         second: 0
+      data:
+        first:
+          name: _Mode
+        second: 2
       data:
         first:
           name: _Metallic
@@ -133,6 +169,10 @@ Material:
       data:
         first:
           name: _InvFade
+        second: 1
+      data:
+        first:
+          name: _SquashAmount
         second: 1
     m_Colors:
       data:
@@ -142,7 +182,11 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .647058845, g: .647058845, b: .647058845, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: .5, g: .5, b: .5, a: 1}
       data:
         first:
           name: _EmissionColorUI
@@ -151,3 +195,15 @@ Material:
         first:
           name: _TintColor
         second: {r: .5, g: .5, b: .5, a: .5}
+      data:
+        first:
+          name: _TreeInstanceScale
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _TreeInstanceColor
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _Emission
+        second: {r: 0, g: 0, b: 0, a: 0}

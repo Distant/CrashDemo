@@ -8,7 +8,6 @@ public class CameraFollow : MonoBehaviour
 	public CameraNode node;
 	public CameraEdge CurrentEdge;
 	public Transform edgesObj;
-	private CameraEdge[] edges;
 	private readonly float timeStep = 3;
 
 	private float MinimumDistance3D (Vector3 p1, Vector3 p2, Vector3 player)
@@ -31,13 +30,13 @@ public class CameraFollow : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		edges = edgesObj.GetComponentsInChildren<CameraEdge> (); //should just check adjascent edges
+
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		foreach (CameraEdge edge in edges.OrderBy (e => MinimumDistance3D (e.node1.transform.position,
+		foreach (CameraEdge edge in CurrentEdge.adjascentNodes().OrderBy (e => MinimumDistance3D (e.node1.transform.position,
 		                                                    e.node2.transform.position, 
 		                                                    player.transform.position)).ToArray ()) {
 			if (edge.minHeight != 0 || edge.maxHeight != 0) {
@@ -61,8 +60,9 @@ public class CameraFollow : MonoBehaviour
 		float totalDist = Vector3.Distance (nextNodePos, nodePos);
 		float playerDist = Vector3.Dot (playerPos - nodePos, nodesVec / nodesVec.magnitude);
 		float ratio = playerDist / totalDist;
-		if (ratio < 0)ratio = 0;
-		else if (ratio > 1)ratio = 1;
+
+		if (ratio < 0) ratio = 0;
+		else if (ratio > 1) ratio = 1;
 
 		float cameraDist = CurrentEdge.node1.cameraDist - CurrentEdge.node2.cameraDist; 
 

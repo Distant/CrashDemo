@@ -2,62 +2,90 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent (typeof(CharacterController))]
 public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 {
-	public Transform playerModel;
-	CharacterController controller;
-	public Vector3 direction = Vector3.forward;
-	public int state = 0;
-	public Vector3 initialPosition;
-	private Rigidbody rigidBody;
-	private LevelManager manager;
-	private Vector3 velocity;
+    private static readonly string PLAYER_HOP = "player_hop";
+    private static readonly string PLAYER_SPIN = "player_spin";
+    private static readonly float SPIN_LENGTH = 0.5f;
 
-	public Vector3 Velocity { get { return velocity; } private set { velocity = value; } }
+    [SerializeField]
+    private Transform playerModel;
+    private CharacterController controller;
 
-	private float moveSpeed = 2f;
-	private float jumpMoveSpeed = 2;
+    private LevelManager levelManager;
+
+    [SerializeField]
+    private float moveSpeed = 2f;
+    [SerializeField]
+    private float jumpMoveSpeed = 2;
+    [SerializeField]
+    private float jumpSpeed = 6f;
+    [SerializeField]
+    private float terminalVelocity = -8f;
+    [SerializeField]
+    private float gravity= 24;
+
+    private Vector3 initialPosition;
+    private Vector3 velocity = Vector3.zero;
+    public Vector3 Velocity { get { return velocity; } private set { velocity = value; } }
 
 	public bool Jumping { get; private set; }
-
 	public float height { get; private set; }
-
 	public bool Spinning { get; private set; }
+    private bool flipping;
 
-	private float jumpSpeed = 6f;
-	private float terminalVelocity = -6f;
 	private List<Box> touching = new List<Box> ();
-	private bool flipping;
-	// Use this for initialization
-	void Start ()
+    
+
+    // Use this for initialization
+    void Start ()
 	{
-		velocity = Vector3.zero;
+        controller = GetComponent<CharacterController>();
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
 		initialPosition = transform.position;
-		manager = GameObject.FindGameObjectWithTag ("LevelManager").GetComponent<LevelManager> ();
-		controller = GetComponent<CharacterController> ();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		if (controller.isGrounded || !(Input.GetAxis ("Horizontal") == 0) || ! (Input.GetAxis ("Vertical") == 0)) {
-			if (controller.isGrounded && !Jumping)
-				velocity.y = 0;
-			velocity = new Vector3 (Input.GetAxis ("Horizontal"), velocity.y, Input.GetAxis ("Vertical"));
-			velocity = transform.TransformDirection (velocity);
-			velocity.x *= controller.isGrounded ? moveSpeed : jumpMoveSpeed;
-			velocity.z *= controller.isGrounded ? moveSpeed : jumpMoveSpeed;
-			
-			if (Input.GetButton ("Jump") && controller.isGrounded) {
-				Jump (jumpSpeed);
-			}
-		}
-		
-		// Apply gravity
-		if (velocity.y > terminalVelocity)
-			velocity.y -= 16 * Time.deltaTime;
+        int s = controller.isGrounded ? 15 : 3;
+            float x = 0;
+        if (Input.GetAxis("Horizontal") == 0)
+        {
+            x = Mathf.Lerp(velocity.x, 0, s*Time.deltaTime);
+        }
+        else {
+            x = Mathf.Lerp(velocity.x, Input.GetAxis("Horizontal") * moveSpeed, 8 * Time.deltaTime);
+        }
 
-		// Move the controller
+        float z = 0;
+        if (Input.GetAxis("Vertical") == 0)
+        {
+            z = Mathf.Lerp(velocity.z, 0, s*Time.deltaTime);
+        }
+        else
+        {
+            z = Mathf.Lerp(velocity.z, Input.GetAxis("Vertical") * moveSpeed, 8*Time.deltaTime);
+        }
+
+        if (controller.isGrounded && !Jumping)
+                velocity.y = 0;
+        velocity = new Vector3(x, velocity.y, z);
+        velocity = transform.TransformDirection(velocity);
+
+
+        if (controller.isGrounded)
+        {
+            if (Input.GetButton("Jump"))
+            {
+                Jump(jumpSpeed);
+            }
+        }
+		
+		if (velocity.y > terminalVelocity)
+			velocity.y -= gravity * Time.deltaTime;
+        
 		if (controller.isGrounded && velocity.y <= 0) {
 			Jumping = false;
 		}
@@ -79,7 +107,7 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 			if (hit.collider.GetComponent<Box> ().gameObject.activeSelf)
 			hit.collider.GetComponent<Box> ().HitPlayer (this.gameObject);
 		} else if (hit.collider.tag == "EndTrigger"){
-			manager.EndLevel();
+			levelManager.EndLevel();
 			hit.collider.gameObject.SetActive(false);
 		}
 	}
@@ -88,12 +116,13 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 	{
 		Jumping = true;
 		velocity.y = speed;
-		//StartCoroutine (Flip (new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"))));
+		levelManager.SoundManager.PlayClipAtPoint(PLAYER_HOP, transform.position, 0.1f);
+		StartCoroutine (FlipAnim (new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"))));
 	}
 
-	public IEnumerator Flip (Vector3 dir)
+	public IEnumerator FlipAnim (Vector3 dir)
 	{
-		yield return new WaitForSeconds (0.3f);
+		yield return new WaitForSeconds (0.2f);
 		if ((Input.GetAxis ("Horizontal") != 0 || Input.GetAxis ("Vertical") != 0) && !Spinning && !flipping) {
 			flipping = true;
 			Vector3 targetDir = (Quaternion.Euler (0, 90, 0) * dir).normalized;
@@ -103,7 +132,7 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 					flipping = false;
 					break;
 				}
-				playerModel.transform.Rotate (targetDir, 12f);
+				playerModel.transform.Rotate (targetDir, 13f);
 				yield return new WaitForEndOfFrame ();
 			}
 		} else
@@ -112,18 +141,23 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 
 	public void Spin ()
 	{
-		Spinning = true;
-		foreach (Box box in touching) {
+        levelManager.SoundManager.PlayClipAtPoint(PLAYER_SPIN, transform.position, 0.05f);
+        Spinning = true;
+
+        List<Box> temp = new List<Box>();
+        temp.AddRange(touching);
+        foreach (Box box in temp) {
 			if (box.gameObject.activeSelf)
 			box.Break ();
 		}
 		touching.Clear ();
+
 		StartCoroutine (SpinAnim ());
 	}
 
 	public IEnumerator SpinAnim ()
 	{
-		float countdown = 0.5f;
+		float countdown = SPIN_LENGTH;
 		while (true) {
 			countdown -= Time.deltaTime;
 			if (countdown < 0) {
@@ -139,7 +173,7 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 	public void Die ()
 	{
 		transform.position = initialPosition;
-		manager.death ();
+		levelManager.PlayerDeath ();
 	}
 
 	public void Stop ()

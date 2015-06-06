@@ -3,13 +3,16 @@ using System.Collections;
 
 public class Box : MonoBehaviour
 {
-	private InventoryManager inventoryManager;
-	private CharacterControl player;
+    protected LevelManager levelManager;
+	protected CharacterControl player;
+	protected SoundManager soundManager;
 
 	// Use this for initialization
-	void Start ()
+	public virtual void Start ()
 	{
-		inventoryManager = GameObject.FindGameObjectWithTag ("LevelManager").GetComponent<InventoryManager> ();
+		levelManager = GameObject.FindGameObjectWithTag ("LevelManager").GetComponent<LevelManager> ();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterControl>();
+        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
 	}
 	
 	// Update is called once per frame
@@ -18,13 +21,12 @@ public class Box : MonoBehaviour
 	
 	}
 
-	public void HitPlayer(GameObject g){
-		player = g.GetComponent<CharacterControl>();
+	public virtual void HitPlayer(GameObject g){
 		if (g.transform.position.y > transform.position.y + 0.5f && (player.Velocity.y < -2f || player.Jumping)) {
 			if (player.Spinning) {
 				player.Stop ();
 			} else{
-			    player.Jump (5f);}
+			    player.Jump (7f);}
 			Break ();
 		}
 		else if (player.Spinning) {
@@ -47,7 +49,9 @@ public class Box : MonoBehaviour
 	}
 
 	public void Break(){
-		inventoryManager.BreakBox (5);
+		soundManager.PlayClipAtPoint ("box_break", transform.position, 0.2f);
+		levelManager.InventoryManager.BreakBox (5);
 		gameObject.SetActive (false);
-	}
+        player.NotTouching(this);
+    }
 }

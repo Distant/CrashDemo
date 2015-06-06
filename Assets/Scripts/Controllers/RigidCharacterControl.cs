@@ -65,11 +65,11 @@ public class RigidCharacterControl : MonoBehaviour, CharacterControl
 	{
 		velocity.y = speed;
 		if ((velocity.z != 0 || velocity.x != 0) && !Spinning) {
-			StartCoroutine (Flip (new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"))));
+			StartCoroutine (FlipAnim (new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"))));
 		}
 	}
 	
-	public IEnumerator Flip (Vector3 dir)
+	public IEnumerator FlipAnim (Vector3 dir)
 	{
 		yield return new WaitForSeconds (0.1f);
 		Vector3 targetDir = (Quaternion.Euler (0, 90, 0) * dir).normalized;
@@ -107,7 +107,7 @@ public class RigidCharacterControl : MonoBehaviour, CharacterControl
 	public void Die ()
 	{
 		transform.position = initialPosition;
-		manager.death ();
+		manager.PlayerDeath ();
 	}
 
 	public bool IsGrounded
