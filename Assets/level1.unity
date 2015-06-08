@@ -385,6 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d479460387a20a45a95460df14a9c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  breakable: 1
 --- !u!65 &156427519
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -588,6 +589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d479460387a20a45a95460df14a9c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  breakable: 1
 --- !u!65 &214777610
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -908,6 +910,10 @@ Prefab:
       propertyPath: BoxesObj
       value: 
       objectReference: {fileID: 738902072}
+    - target: {fileID: 11449916, guid: 68042491b2045e84b9cbc82d597762b3, type: 2}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 341765288}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68042491b2045e84b9cbc82d597762b3, type: 2}
   m_IsPrefabParent: 0
@@ -1114,6 +1120,12 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 5a53a4baeb8a6d14ab4fab704a42975d, type: 2}
   m_PrefabInternal: {fileID: 335304090}
+--- !u!114 &341765288 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11452212, guid: 137fb12efcd7e3f438aefeef15d8ceb2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1684470540}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &349157062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1774,6 +1786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d479460387a20a45a95460df14a9c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  breakable: 1
 --- !u!65 &504114176
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3763,6 +3776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d479460387a20a45a95460df14a9c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  breakable: 1
 --- !u!65 &1216598952
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4633,6 +4647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d479460387a20a45a95460df14a9c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  breakable: 1
 --- !u!65 &1431177061
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5429,6 +5444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d479460387a20a45a95460df14a9c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  breakable: 1
 --- !u!65 &1640915853
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5761,6 +5777,10 @@ Prefab:
     - target: {fileID: 113620, guid: 137fb12efcd7e3f438aefeef15d8ceb2, type: 2}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 11488332, guid: 137fb12efcd7e3f438aefeef15d8ceb2, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 137fb12efcd7e3f438aefeef15d8ceb2, type: 2}
