@@ -36,6 +36,8 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
     private bool flipping;
 
 	private List<Box> touching = new List<Box> ();
+
+    private Vector3 slope;
     
 
     // Use this for initialization
@@ -50,7 +52,7 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 	void Update ()
 	{
         int s = controller.isGrounded ? 15 : 3;
-            float x = 0;
+        float x = 0;
         if (Input.GetAxis("Horizontal") == 0)
         {
             x = Mathf.Lerp(velocity.x, 0, s*Time.deltaTime);
@@ -69,11 +71,11 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
             z = Mathf.Lerp(velocity.z, Input.GetAxis("Vertical") * moveSpeed, 8*Time.deltaTime);
         }
 
-        if (controller.isGrounded && !Jumping)
-                velocity.y = 0;
+        if (controller.isGrounded && !Jumping) velocity.y = 0;
         velocity = new Vector3(x, velocity.y, z);
         velocity = transform.TransformDirection(velocity);
 
+        velocity += new Vector3(slope.x, 0, slope.z).normalized * 0.2f;
 
         if (controller.isGrounded)
         {
@@ -81,6 +83,9 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
             {
                 Jump(jumpSpeed);
             }
+        }
+        else {
+            slope = Vector3.up;
         }
 		
 		if (velocity.y > terminalVelocity)
@@ -110,6 +115,18 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 			levelManager.EndLevel();
 			hit.collider.gameObject.SetActive(false);
 		}
+
+        Rect rect = new Rect(transform.position.x - controller.radius, transform.position.z - controller.radius, controller.radius*2, controller.radius*2);
+        if (rect.Contains(new Vector2(hit.point.x, hit.point.z))){
+            if (Vector3.Angle(Vector3.up, hit.normal) > 45)
+            {
+                print("on slope of " + hit.gameObject.name);
+                slope = hit.normal;
+            }
+            else {
+                slope = Vector3.up;
+            }
+        }
 	}
 
 	public void Jump (float speed)
@@ -168,7 +185,7 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 		}
 		playerModel.transform.rotation = Quaternion.Euler (0, 0, 0);
 		Spinning = false;
-	}
+    }
 
 	public void Die ()
 	{

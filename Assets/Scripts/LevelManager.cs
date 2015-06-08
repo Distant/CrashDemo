@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
 
 	public GameObject BoxesObj;
 	private Box[] boxes;
+    public Text image;
 
     [SerializeField]
 	private InventoryManager inventoryManager;
@@ -16,6 +17,7 @@ public class LevelManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        image.enabled = false;
 		boxes = BoxesObj.GetComponentsInChildren<Box>();
         inventoryManager.init(boxes.Length);
     }
@@ -34,5 +36,7 @@ public class LevelManager : MonoBehaviour {
 
 	public void EndLevel(){
 		inventoryManager.VerifyBoxCount ();
-	}
+        image.enabled = true;
+        Application.LoadLevel(1);
+    }
 }
