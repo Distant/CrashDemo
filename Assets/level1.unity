@@ -913,7 +913,7 @@ Prefab:
     - target: {fileID: 11449916, guid: 68042491b2045e84b9cbc82d597762b3, type: 2}
       propertyPath: image
       value: 
-      objectReference: {fileID: 1684470541}
+      objectReference: {fileID: 341765288}
     - target: {fileID: 8207552, guid: 68042491b2045e84b9cbc82d597762b3, type: 2}
       propertyPath: m_audioClip
       value: 
@@ -1124,6 +1124,12 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 5a53a4baeb8a6d14ab4fab704a42975d, type: 2}
   m_PrefabInternal: {fileID: 335304090}
+--- !u!114 &341765288 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11452212, guid: 137fb12efcd7e3f438aefeef15d8ceb2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1684470540}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &349157062
 GameObject:
   m_ObjectHideFlags: 0
@@ -5783,12 +5789,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 137fb12efcd7e3f438aefeef15d8ceb2, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1684470541 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11455466, guid: 137fb12efcd7e3f438aefeef15d8ceb2,
-    type: 2}
-  m_PrefabInternal: {fileID: 1684470540}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1686909575
 GameObject:
   m_ObjectHideFlags: 0
