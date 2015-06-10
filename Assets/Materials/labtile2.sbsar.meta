@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2da8127abc1a3fd4bb8dcfe29b67d962
-timeCreated: 1433611867
+timeCreated: 1433928756
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -9,7 +9,7 @@ SubstanceImporter:
     name: labtile2
     prototypeName: labtile2
     shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-    shaderKeywords: _NORMALMAP _PARALLAXMAP
+    shaderKeywords: _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
     renderQueue: -1
     lightmapFlags: 5
     inputs:
@@ -84,7 +84,7 @@ SubstanceImporter:
             name: _DetailAlbedoMap
           second:
             texture: {instanceID: 0}
-            scale: {x: .5, y: .5}
+            scale: {x: 1, y: .5}
             offset: {x: 0, y: 0}
         data:
           first:
@@ -109,7 +109,7 @@ SubstanceImporter:
         data:
           first:
             name: _Parallax
-          second: .0199999996
+          second: .0315000005
         data:
           first:
             name: _ZWrite
@@ -176,6 +176,11 @@ SubstanceImporter:
       aniso: 1
       wrapMode: 0
     - name: labtile2_height
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: labtile2_roughness
       alphaSource: 0
       filterMode: 1
       aniso: 1

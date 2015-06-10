@@ -108,13 +108,13 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 
 	void OnControllerColliderHit (ControllerColliderHit hit)
 	{
-		if (hit.collider.tag == "Box") {
-			if (hit.collider.GetComponent<Box> ().gameObject.activeSelf)
-			hit.collider.GetComponent<Box> ().HitPlayer (this.gameObject);
-		} else if (hit.collider.tag == "EndTrigger"){
-			levelManager.EndLevel();
-			hit.collider.gameObject.SetActive(false);
-		}
+        if (hit.collider.tag == "Box") {
+            if (hit.collider.GetComponent<Box>().gameObject.activeSelf)
+                hit.collider.GetComponent<Box>().HitPlayer(this.gameObject);
+        } else if (hit.collider.tag == "EndTrigger") {
+            levelManager.EndLevel();
+            hit.collider.gameObject.SetActive(false);
+        }
 
         Rect rect = new Rect(transform.position.x - controller.radius, transform.position.z - controller.radius, controller.radius*2, controller.radius*2);
         if (rect.Contains(new Vector2(hit.point.x, hit.point.z))){
