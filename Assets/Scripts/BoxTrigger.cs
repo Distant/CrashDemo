@@ -5,13 +5,15 @@ using UnityEngine.Events;
 public class BoxTrigger : Box {
 
     public float cooldown = 0.5f;
-    private bool cooling = false;
+    private bool onCooldown = false;
     public Vector3 scaleBig;
     public Vector3 scaleSmall;
-    private Vector3 initialScale;
+    private Vector3 initScale;
     private Vector3 initPos;
     public float smallY;
     public float bigY;
+    public bool repeatable;
+    private bool activated;
 
     public Transform mesh;
 
@@ -21,29 +23,37 @@ public class BoxTrigger : Box {
     public override void Start()
     {
         base.Start();
-        initialScale = mesh.localScale;
+        initScale = mesh.localScale;
         initPos = mesh.position;
     }
 
     public override void OnBounce() {
-        base.OnBounce();
-        Trigger();
-    }
-
-    public override void OnSpin() {
-        base.OnBounce();
-        Trigger();
-    }
-
-    public void Trigger() {
-        if (!cooling) {
-            trigger.Invoke();
-            StartCoroutine(Play());
+        if (repeatable ? !onCooldown : !activated)
+        {
+            base.OnBounce();
+            Trigger();
         }
     }
 
+    public override void OnSpin() {
+        if (repeatable ? !onCooldown : !activated)
+        {
+            base.OnBounce();
+            Trigger();
+        }
+    }
+
+    public void Trigger() {
+        if (!activated && !repeatable) {
+            activated = true;
+            mesh.gameObject.GetComponent<MeshRenderer>().material = mesh.gameObject.GetComponent<MeshRenderer>().materials[1];
+        }
+            trigger.Invoke();
+            StartCoroutine(Play());
+    }
+
     public IEnumerator Play() {
-        cooling = true;
+        onCooldown = true;
         float elapsed = 0;
         while (true) {
             if (elapsed > 0.05f) break;
@@ -68,12 +78,15 @@ public class BoxTrigger : Box {
         while (true)
         {
             if (elapsed > 0.05f) break;
-            mesh.localScale = Vector3.Lerp(mesh.localScale, initialScale, 20 * Time.deltaTime);
+            mesh.localScale = Vector3.Lerp(mesh.localScale, initScale, 20 * Time.deltaTime);
             mesh.position = Vector3.Lerp(mesh.position, initPos, 20 * Time.deltaTime);
             elapsed += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
 
-        cooling = false;
+        mesh.localScale = initScale;
+        mesh.position = initPos;
+
+        onCooldown = false;
     }
 }

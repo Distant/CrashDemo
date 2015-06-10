@@ -37,13 +37,14 @@ public class ElectricPoles : MonoBehaviour {
             o2.localPosition = start2 + new Vector3(end2X, 0, 0);
 
             time = 0;
-            while( time < 1.5f)
+
+            while( time < 0.1f)
             {
                 time += Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
 
-            while (o1.localPosition.x > start1.x + 5 * Time.deltaTime)
+            while (o1.localPosition.x > start1.x + 8 * Time.deltaTime)
             {
                 o1.localPosition -= new Vector3(8, 0, 0) * Time.deltaTime;
                 o2.localPosition += new Vector3(7.2f, 0, 0) * Time.deltaTime;
@@ -54,7 +55,7 @@ public class ElectricPoles : MonoBehaviour {
             o2.localPosition = start2;
 
             time = 0;
-            while (time < 1.5f)
+            while (time < 1f)
             {
                 time += Time.deltaTime;
                 yield return new WaitForEndOfFrame();
