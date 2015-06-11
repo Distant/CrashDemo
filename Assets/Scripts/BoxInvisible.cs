@@ -17,7 +17,12 @@ public class BoxInvisible : Box
 	}
 
 	public override void HitPlayer(GameObject g) {
-        GetComponent<MeshRenderer>().enabled = true;
+        Enable();
         base.HitPlayer(g);
 	}
+
+    public void Enable() {
+        GetComponent<MeshRenderer>().enabled = true;
+    }
+
 }

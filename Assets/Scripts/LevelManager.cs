@@ -32,7 +32,8 @@ public class LevelManager : MonoBehaviour {
 		foreach (Box box in boxes) {
 			box.gameObject.SetActive(true);
 		}
-	}
+        Application.LoadLevel(Application.loadedLevel);
+    }
 
 	public void EndLevel(){
 		inventoryManager.VerifyBoxCount ();

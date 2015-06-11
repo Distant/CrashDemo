@@ -24,7 +24,6 @@ public class ElectricPoles : MonoBehaviour {
 	}
 
     public IEnumerator Animate1() {
-        float time = 0;
         while (true) {
             while (o1.localPosition.x < start1.x + end1X - 8 * Time.deltaTime)
             {
@@ -36,13 +35,7 @@ public class ElectricPoles : MonoBehaviour {
             o1.localPosition = start1 + new Vector3(end1X, 0, 0);
             o2.localPosition = start2 + new Vector3(end2X, 0, 0);
 
-            time = 0;
-
-            while( time < 0.1f)
-            {
-                time += Time.deltaTime;
-                yield return new WaitForEndOfFrame();
-            }
+            yield return new WaitForSeconds(0.1f);
 
             while (o1.localPosition.x > start1.x + 8 * Time.deltaTime)
             {
@@ -54,12 +47,56 @@ public class ElectricPoles : MonoBehaviour {
             o1.localPosition = start1;
             o2.localPosition = start2;
 
-            time = 0;
-            while (time < 1f)
+            yield return new WaitForSeconds(0.1f);
+
+            while (o1.localPosition.x < start1.x + end1X - 8 * Time.deltaTime)
             {
-                time += Time.deltaTime;
+                o1.localPosition += new Vector3(8, 0, 0) * Time.deltaTime;
+                o2.localPosition -= new Vector3(7.2f, 0, 0) * Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
+
+            o1.localPosition = start1 + new Vector3(end1X, 0, 0);
+            o2.localPosition = start2 + new Vector3(end2X, 0, 0);
+
+            yield return new WaitForSeconds(1f);
+
+            while (o1.localPosition.x > start1.x + 8 * Time.deltaTime)
+            {
+                o1.localPosition -= new Vector3(8, 0, 0) * Time.deltaTime;
+                o2.localPosition += new Vector3(7.2f, 0, 0) * Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+            }
+
+            o1.localPosition = start1;
+            o2.localPosition = start2;
+
+            yield return new WaitForSeconds(0.1f);
+
+            while (o1.localPosition.x < start1.x + end1X - 8 * Time.deltaTime)
+            {
+                o1.localPosition += new Vector3(8, 0, 0) * Time.deltaTime;
+                o2.localPosition -= new Vector3(7.2f, 0, 0) * Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+            }
+
+            o1.localPosition = start1 + new Vector3(end1X, 0, 0);
+            o2.localPosition = start2 + new Vector3(end2X, 0, 0);
+
+            yield return new WaitForSeconds(0.1f);
+
+            while (o1.localPosition.x > start1.x + 8 * Time.deltaTime)
+            {
+                o1.localPosition -= new Vector3(8, 0, 0) * Time.deltaTime;
+                o2.localPosition += new Vector3(7.2f, 0, 0) * Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+            }
+
+            o1.localPosition = start1;
+            o2.localPosition = start2;
+
+            yield return new WaitForSeconds(1f);
+
         }
     }
 
