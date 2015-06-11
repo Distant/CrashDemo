@@ -35,7 +35,7 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 	public bool Spinning { get; private set; }
     private bool flipping;
 
-	private List<Box> touching = new List<Box> ();
+	public List<Box> touching = new List<Box> ();
 
     private Vector3 slope;
     
@@ -163,11 +163,14 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 
         List<Box> temp = new List<Box>();
         temp.AddRange(touching);
-        foreach (Box box in temp) {
-			if (box.gameObject.activeSelf)
-			box.Break ();
+        foreach (Box box in temp)
+        {
+            if (box.gameObject.activeSelf)
+            {
+                box.HitPlayer(this.gameObject);
+                if (box.breakable) box.Break();
+            }
 		}
-		touching.Clear ();
 
 		StartCoroutine (SpinAnim ());
 	}

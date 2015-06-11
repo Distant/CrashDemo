@@ -87,6 +87,8 @@ public class BoxTrigger : Box {
         mesh.localScale = initScale;
         mesh.position = initPos;
 
+
+        yield return new WaitForSeconds(0.2f);
         onCooldown = false;
     }
 }
