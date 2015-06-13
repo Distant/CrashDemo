@@ -38,11 +38,10 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 	public List<Box> touching = new List<Box> ();
 
     private Vector3 slope;
-    
 
     // Use this for initialization
     void Start ()
-	{
+	{  
         controller = GetComponent<CharacterController>();
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
 		initialPosition = transform.position;

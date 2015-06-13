@@ -164,9 +164,11 @@ MonoBehaviour:
   breakable: 0
   cooldown: .5
   scaleBig: {x: .699999988, y: 1.29999995, z: .699999988}
+  scaleBigSpin: {x: .699999988, y: 1.70000005, z: .699999988}
   scaleSmall: {x: 1.39999998, y: .699999988, z: 1.39999998}
   smallY: .0799999982
-  bigY: .075000003
+  bigY: .0850000009
+  bigYSpin: .0179999992
   repeatable: 0
   mesh: {fileID: 457978}
   trigger:

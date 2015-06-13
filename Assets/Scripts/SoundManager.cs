@@ -27,4 +27,8 @@ public class SoundManager : MonoBehaviour {
     public void PlayClipAtPoint(string key, Vector3 position, float volume) {
         AudioSource.PlayClipAtPoint(sounds[key], position, volume);
     }
+
+    public void Reset()
+    {
+    }
 }

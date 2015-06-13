@@ -9,6 +9,7 @@ TagManager:
   - LevelManager
   - Box
   - EndTrigger
+  - SoundManager
   layers:
   - Default
   - TransparentFX

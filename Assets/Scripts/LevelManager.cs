@@ -1,43 +1,58 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelManager : MonoBehaviour {
+public class LevelManager : MonoBehaviour
+{
 
-	public GameObject BoxesObj;
-	private Box[] boxes;
+    public GameObject BoxesObj;
+    private Box[] boxes;
     public Text image;
 
     [SerializeField]
-	private InventoryManager inventoryManager;
+    private InventoryManager inventoryManager;
     public InventoryManager InventoryManager { get { return inventoryManager; } private set { inventoryManager = value; } }
 
     [SerializeField]
     private SoundManager soundManager;
     public SoundManager SoundManager { get { return soundManager; } private set { soundManager = value; } }
 
-	// Use this for initialization
-	void Start () {
+    private static bool created = false;
+
+    void Awake()
+    {
+        if (created) DestroyImmediate(this.gameObject);
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+        created = true;
+        DontDestroyOnLoad(this.gameObject);
         image.enabled = false;
-		boxes = BoxesObj.GetComponentsInChildren<Box>();
+        boxes = BoxesObj.GetComponentsInChildren<Box>();
         inventoryManager.init(boxes.Length);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-	public void PlayerDeath(){
-		inventoryManager.death ();
-		foreach (Box box in boxes) {
-			box.gameObject.SetActive(true);
-		}
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void PlayerDeath()
+    {
+        inventoryManager.Death();
+        soundManager.Reset();
         Application.LoadLevel(Application.loadedLevel);
     }
 
-	public void EndLevel(){
-		inventoryManager.VerifyBoxCount ();
+    public void EndLevel()
+    {
+        inventoryManager.VerifyBoxCount();
         image.enabled = true;
+        created = false;
         Application.LoadLevel(1);
+        Destroy(inventoryManager.inventoryPanel.parent.gameObject);
+        Destroy(this.gameObject);
     }
 }
