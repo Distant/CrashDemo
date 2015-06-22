@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2da8127abc1a3fd4bb8dcfe29b67d962
-timeCreated: 1433928756
+timeCreated: 1434963037
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -109,7 +109,7 @@ SubstanceImporter:
         data:
           first:
             name: _Parallax
-          second: .0315000005
+          second: .0313999988
         data:
           first:
             name: _ZWrite
@@ -117,7 +117,7 @@ SubstanceImporter:
         data:
           first:
             name: _Glossiness
-          second: .130999997
+          second: .150000006
         data:
           first:
             name: _BumpScale
@@ -208,7 +208,7 @@ SubstanceImporter:
       textureWidth: 512
       textureHeight: 512
       textureFormat: 0
-      loadingBehavior: 1
+      loadingBehavior: 3
   deletedPrototypes: []
   userData: 
   assetBundleName: 

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 076d90224c9931740aad999a730c449c
-timeCreated: 1433690427
+timeCreated: 1434963054
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -23,7 +23,7 @@ SubstanceImporter:
     materialInformation:
       serializedVersion: 5
       offset: {x: 0, y: 0}
-      scale: {x: 4, y: 5}
+      scale: {x: 6, y: 8}
       generateMipmaps: 1
       generateAllOutputs: 0
       animationUpdateRate: 42
@@ -35,14 +35,14 @@ SubstanceImporter:
             name: _MainTex
           second:
             texture: {instanceID: 0}
-            scale: {x: 4, y: 5}
+            scale: {x: 6, y: 8}
             offset: {x: 0, y: 0}
         data:
           first:
             name: _BumpMap
           second:
             texture: {instanceID: 0}
-            scale: {x: 4, y: 5}
+            scale: {x: 6, y: 8}
             offset: {x: 0, y: 0}
         data:
           first:
@@ -91,7 +91,7 @@ SubstanceImporter:
             name: _MetallicGlossMap
           second:
             texture: {instanceID: 0}
-            scale: {x: 4, y: 5}
+            scale: {x: 6, y: 8}
             offset: {x: 0, y: 0}
       floats:
         data:
@@ -117,7 +117,7 @@ SubstanceImporter:
         data:
           first:
             name: _Glossiness
-          second: 0
+          second: .233999997
         data:
           first:
             name: _BumpScale
@@ -191,10 +191,10 @@ SubstanceImporter:
     buildTargetSettings:
     - serializedVersion: 2
       buildTarget: 
-      textureWidth: 512
-      textureHeight: 512
+      textureWidth: 1024
+      textureHeight: 1024
       textureFormat: 0
-      loadingBehavior: 1
+      loadingBehavior: 3
   deletedPrototypes: []
   userData: 
   assetBundleName: 

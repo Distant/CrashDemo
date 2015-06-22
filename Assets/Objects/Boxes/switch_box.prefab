@@ -8,7 +8,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  - 95: {fileID: 9500000}
   - 65: {fileID: 6500000}
   - 54: {fileID: 5443250}
   - 65: {fileID: 6505390}
@@ -30,6 +29,7 @@ GameObject:
   - 4: {fileID: 457978}
   - 23: {fileID: 2322934}
   - 33: {fileID: 3383184}
+  - 95: {fileID: 9549850}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -44,7 +44,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 8.14603425e-08, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.33599997, y: .340000004, z: 23.2029991}
+  m_LocalPosition: {x: -1.33599997, y: .344999999, z: 23.2029991}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 457978}
@@ -57,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165636}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -76,7 +76,7 @@ MeshRenderer:
   - {fileID: 2100000, guid: a2a224417849fc346802e99f174263dc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
+  m_UseLightProbes: 1
   m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
@@ -133,18 +133,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .550000012, y: .5, z: .550000012}
   m_Center: {x: 0, y: 0, z: .25}
---- !u!95 &9500000
+--- !u!95 &9549850
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 165636}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 09134b6686b1ed449912abf9870559bf, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 41ac9f6f3f47ca94d856647d6f322fbe, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 

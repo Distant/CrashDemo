@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 10318031038719844a9aec2913f9c364
-timeCreated: 1433682205
+timeCreated: 1434963003
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -117,7 +117,7 @@ SubstanceImporter:
         data:
           first:
             name: _Glossiness
-          second: .5
+          second: .150000006
         data:
           first:
             name: _BumpScale
@@ -203,7 +203,7 @@ SubstanceImporter:
       textureWidth: 512
       textureHeight: 512
       textureFormat: 0
-      loadingBehavior: 1
+      loadingBehavior: 3
   deletedPrototypes: []
   userData: 
   assetBundleName: 

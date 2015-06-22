@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 5c505a2ae41b9984bb432fb20ea935e9
-timeCreated: 1433874576
+timeCreated: 1434963069
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -23,7 +23,7 @@ SubstanceImporter:
     materialInformation:
       serializedVersion: 5
       offset: {x: 0, y: 0}
-      scale: {x: 1.5, y: 1.79999995}
+      scale: {x: .460000008, y: 3.50999999}
       generateMipmaps: 1
       generateAllOutputs: 0
       animationUpdateRate: 42
@@ -194,7 +194,7 @@ SubstanceImporter:
       textureWidth: 512
       textureHeight: 512
       textureFormat: 0
-      loadingBehavior: 1
+      loadingBehavior: 3
   deletedPrototypes: []
   userData: 
   assetBundleName: 

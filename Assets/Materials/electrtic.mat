@@ -18,9 +18,9 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: b58367b640b7a044d8a62c35f30faf3b, type: 3}
-          m_Scale: {x: 2, y: 2}
-          m_Offset: {x: .800000012, y: 1.29999995}
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
@@ -53,9 +53,9 @@ Material:
         first:
           name: _EmissionMap
         second:
-          m_Texture: {fileID: 2800000, guid: 53c387df1ceb0cc4b8bb5f76688c9c65, type: 3}
-          m_Scale: {x: 2, y: 2}
-          m_Offset: {x: .800000012, y: 1.29999995}
+          m_Texture: {fileID: 2800000, guid: 29af82925b59a694380a093bb4699528, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _DetailMask
@@ -68,7 +68,7 @@ Material:
           name: _DetailAlbedoMap
         second:
           m_Texture: {fileID: 0}
-          m_Scale: {x: 2, y: 2}
+          m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -121,7 +121,7 @@ Material:
       data:
         first:
           name: _EmissionScaleUI
-        second: 1.70000005
+        second: 1.39999998
       data:
         first:
           name: _Mode
@@ -134,7 +134,7 @@ Material:
       data:
         first:
           name: _EmissionColor
-        second: {r: .853686154, g: 1.39270735, b: 1.6125015, a: 1.70000005}
+        second: {r: .988240719, g: 1.28073239, b: 1.39999998, a: 1.39999998}
       data:
         first:
           name: _Color
@@ -142,4 +142,4 @@ Material:
       data:
         first:
           name: _EmissionColorUI
-        second: {r: .502162635, g: .819236934, b: .948529422, a: 1}
+        second: {r: .705882311, g: .914807558, b: 1, a: 1}
