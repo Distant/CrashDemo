@@ -6,9 +6,10 @@ public class CameraFollow : MonoBehaviour
 {
 	public Transform player;
 	public CameraNode node;
-	public CameraEdge CurrentEdge;
+	public CameraEdge currentEdge;
 	public Transform edgesObj;
 	private readonly float timeStep = 3;
+    public static float height = 10f;
 
 	private float MinimumDistance3D (Vector3 p1, Vector3 p2, Vector3 player)
 	{
@@ -36,26 +37,27 @@ public class CameraFollow : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		foreach (CameraEdge edge in CurrentEdge.adjascentNodes().OrderBy (e => MinimumDistance3D (e.node1.transform.position,
+        foreach (CameraEdge edge in currentEdge.adjascentEdges().OrderBy (e => MinimumDistance3D (e.node1.transform.position,
 		                                                    e.node2.transform.position, 
 		                                                    player.transform.position)).ToArray ()) {
 			if (edge.minHeight != 0 || edge.maxHeight != 0) {
 				if ((edge.minHeight == 0 ? true : player.transform.position.y > edge.minHeight) && (edge.maxHeight == 0 ? true : player.transform.position.y < edge.maxHeight) ) {
-					CurrentEdge = edge;
+					currentEdge = edge;
 					break;
 				}
 			} else{
-				CurrentEdge = edge;
+				currentEdge = edge;
 				break;
 			}
 		}
 				       
-		Vector3 playerPos = player.position;;
-		Vector3 nodePos = CurrentEdge.node1.transform.position;;
-		Vector3 nextNodePos = CurrentEdge.node2.transform.position;
+		Vector3 playerPos = player.position;
+        playerPos.y = 0;
+		Vector3 nodePos = currentEdge.node1.transform.position; nodePos.y = 0;
+		Vector3 nextNodePos = currentEdge.node2.transform.position; nextNodePos.y = 0;
 		Vector3 nodesVec = nextNodePos - nodePos;
 
-		Vector3 nodeDist = (CurrentEdge.node2.transform.position - CurrentEdge.node1.transform.position);
+		Vector3 nodeDist = (currentEdge.node2.transform.position - currentEdge.node1.transform.position);
 
 		float totalDist = Vector3.Distance (nextNodePos, nodePos);
 		float playerDist = Vector3.Dot (playerPos - nodePos, nodesVec / nodesVec.magnitude);
@@ -64,16 +66,17 @@ public class CameraFollow : MonoBehaviour
 		if (ratio < 0) ratio = 0;
 		else if (ratio > 1) ratio = 1;
 
-		float cameraDist = CurrentEdge.node1.cameraDist - CurrentEdge.node2.cameraDist; 
+		float cameraDist = currentEdge.node1.cameraDist - currentEdge.node2.cameraDist; 
 
-		float heightOffset = CurrentEdge.node1.heightOffset + (CurrentEdge.node2.heightOffset - CurrentEdge.node1.heightOffset) * ratio;
+        float cameraHeight = currentEdge.node1.transform.position.y + (currentEdge.node2.transform.position.y - currentEdge.node1.transform.position.y) * ratio;
+        float heightOffset = currentEdge.node1.heightOffset + (currentEdge.node2.heightOffset - currentEdge.node1.heightOffset) * ratio;
 
-		float yPos = CurrentEdge.followPlayer ? player.transform.position.y + 1.5f : player.GetComponentInChildren<CharacterControl> ().height + 2f + heightOffset;
+		float yPos = currentEdge.followPlayer ? player.transform.position.y + 1.5f : player.GetComponentInChildren<CharacterControl> ().height + cameraHeight + 2f + heightOffset;
 
-		Vector3 newPos = new Vector3 (CurrentEdge.node1.transform.position.x + (CurrentEdge.node2.transform.position.x - CurrentEdge.node1.transform.position.x) * ratio, yPos, CurrentEdge.node1.transform.position.z + nodeDist.z * ratio - (CurrentEdge.node1.cameraDist - cameraDist * ratio));
+		Vector3 newPos = new Vector3 (currentEdge.node1.transform.position.x + (currentEdge.node2.transform.position.x - currentEdge.node1.transform.position.x) * ratio, yPos, currentEdge.node1.transform.position.z + nodeDist.z * ratio - (currentEdge.node1.cameraDist - cameraDist * ratio));
 		this.transform.position = Vector3.Lerp (this.transform.position, newPos, timeStep * Time.deltaTime);
 
-		Quaternion newRot = Quaternion.Lerp (CurrentEdge.node1.transform.rotation, CurrentEdge.node2.transform.rotation, ratio);
+		Quaternion newRot = Quaternion.Lerp (currentEdge.node1.transform.rotation, currentEdge.node2.transform.rotation, ratio);
 		this.transform.rotation = Quaternion.Lerp (this.transform.rotation, newRot, timeStep * Time.deltaTime);
 	}
 

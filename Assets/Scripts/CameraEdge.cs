@@ -19,7 +19,7 @@ public class CameraEdge : MonoBehaviour {
 	
 	}
 
-	public CameraEdge[] adjascentNodes(){
+	public CameraEdge[] adjascentEdges(){
 		CameraEdge[] edges = new CameraEdge[node1.edges.Length + node2.edges.Length];
 		for (int i = 0; i < node1.edges.Length; i++) {
 			edges[i] = node1.edges[i];
