@@ -36,8 +36,10 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
     private bool flipping;
 
 	public List<Box> touching = new List<Box> ();
-
+    public Transform g;
     private Vector3 slope;
+
+    private bool canJump;
 
     // Use this for initialization
     void Start ()
@@ -74,11 +76,20 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
         velocity = new Vector3(x, velocity.y, z);
         velocity = transform.TransformDirection(velocity);
 
+
+        if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 0.1f || Mathf.Abs(Input.GetAxis("Vertical")) >= 0.1f)  g.rotation = Quaternion.Slerp(g.rotation, Quaternion.LookRotation(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"))), 10*Time.deltaTime);
+
         velocity += new Vector3(slope.x, 0, slope.z).normalized * 0.2f;
+
+        playerModel.GetComponent<Animator>().SetBool("grounded", controller.isGrounded);
+
+        if (!Input.GetButton("Jump") && controller.isGrounded) {
+            canJump = true;
+        }
 
         if (controller.isGrounded)
         {
-            if (Input.GetButton("Jump"))
+            if (Input.GetButton("Jump") && canJump)
             {
                 Jump(jumpSpeed);
             }
@@ -131,33 +142,26 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
 	public void Jump (float speed)
 	{
 		Jumping = true;
+        canJump = false;
 		velocity.y = speed;
-		levelManager.SoundManager.PlayClipAtPoint(PLAYER_HOP, transform.position, 0.1f);
-		StartCoroutine (FlipAnim (new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"))));
+		levelManager.SoundManager.PlayClipAtPoint(PLAYER_HOP, transform.position, 0.04f);
+        StartCoroutine (FlipAnim (new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"))));
 	}
 
 	public IEnumerator FlipAnim (Vector3 dir)
 	{
-		yield return new WaitForSeconds (0.2f);
+        yield return new WaitForSeconds (0.2f);
 		if ((Input.GetAxis ("Horizontal") != 0 || Input.GetAxis ("Vertical") != 0) && !Spinning && !flipping) {
 			flipping = true;
-			Vector3 targetDir = (Quaternion.Euler (0, 90, 0) * dir).normalized;
-			while (true) {
-				if ((controller.isGrounded) || Spinning) {
-					playerModel.transform.rotation = Quaternion.identity;
-					flipping = false;
-					break;
-				}
-				playerModel.transform.Rotate (targetDir, 13f);
-				yield return new WaitForEndOfFrame ();
-			}
-		} else
+            playerModel.GetComponent<Animator>().SetTrigger("flip_trigger");
+            flipping = false;
+        } else
 			yield return new WaitForSeconds (0);
 	}
 
 	public void Spin ()
 	{
-        levelManager.SoundManager.PlayClipAtPoint(PLAYER_SPIN, transform.position, 0.05f);
+        levelManager.SoundManager.PlayClipAtPoint(PLAYER_SPIN, transform.position, 0.025f);
         Spinning = true;
 
         List<Box> temp = new List<Box>();
@@ -171,21 +175,13 @@ public class KinematicCharacterControl : MonoBehaviour, CharacterControl
             }
 		}
 
-		StartCoroutine (SpinAnim ());
-	}
+        StartCoroutine (SpinAnim ());
+    }
 
 	public IEnumerator SpinAnim ()
 	{
-		float countdown = SPIN_LENGTH;
-		while (true) {
-			countdown -= Time.deltaTime;
-			if (countdown < 0) {
-				break;
-			}
-			playerModel.transform.Rotate (new Vector3 (0, 1, 0), 16);
-			yield return new WaitForEndOfFrame ();
-		}
-		playerModel.transform.rotation = Quaternion.Euler (0, 0, 0);
+        playerModel.GetComponent<Animator>().SetTrigger("spin_trigger");
+        yield return new WaitForSeconds(SPIN_LENGTH);
 		Spinning = false;
     }
 
