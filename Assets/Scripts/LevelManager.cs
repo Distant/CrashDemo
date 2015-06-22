@@ -42,8 +42,8 @@ public class LevelManager : MonoBehaviour
     public void PlayerDeath()
     {
         inventoryManager.Death();
-        soundManager.Reset();
         Application.LoadLevel(Application.loadedLevel);
+        soundManager.Reset();
     }
 
     public void EndLevel()
