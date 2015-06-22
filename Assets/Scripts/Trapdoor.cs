@@ -38,9 +38,12 @@ public class Trapdoor : MonoBehaviour, Triggerable {
                 yield return new WaitForEndOfFrame();
             }
 
+            left.position = initLeft + new Vector3(-1, 0, 0);
+            right.position = initRight + new Vector3(1, 0, 0);
+
             yield return new WaitForSeconds(openTime);
-            if (sticky) { moving = false; break; }else
-            {
+            if (sticky) { moving = false; break; }
+            else {
                 while ((left.position - initLeft).x < 0)
                 {
                     left.position += new Vector3(speed, 0, 0);
@@ -48,7 +51,9 @@ public class Trapdoor : MonoBehaviour, Triggerable {
                     yield return new WaitForEndOfFrame();
                 }
 
-               
+                left.position = initLeft;
+                right.position = initRight;
+
                 yield return new WaitForSeconds(closeTime);
             }
         }

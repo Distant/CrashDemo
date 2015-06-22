@@ -65,7 +65,7 @@ public class Box : MonoBehaviour
     {
         if (breakable)
         {
-            soundManager.PlayClipAtPoint("box_break", transform.position, 0.2f);
+            soundManager.PlayClipAtPoint("box_break", transform.position, 0.05f);
             levelManager.InventoryManager.BreakBox(5);
             gameObject.SetActive(false);
             player.NotTouching(this);

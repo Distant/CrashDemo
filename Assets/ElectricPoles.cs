@@ -9,13 +9,14 @@ public class ElectricPoles : MonoBehaviour {
     public Vector3 start2;
     public float end1X;
     public float end2X;
+    private SoundManager sound;
 
     // Use this for initialization
     void Start () {
         start1 = o1.localPosition;
         start2 = o2.localPosition;
-        StartCoroutine(Animate1());
-        StartCoroutine(RotateAnim());
+        //StartCoroutine(RotateAnim());
+        sound = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
 	
 	// Update is called once per frame
@@ -23,87 +24,10 @@ public class ElectricPoles : MonoBehaviour {
 
 	}
 
-    public IEnumerator Animate1() {
-        while (true) {
-            while (o1.localPosition.x < start1.x + end1X - 8 * Time.deltaTime)
-            {
-                o1.localPosition += new Vector3(8,0,0) * Time.deltaTime;
-                o2.localPosition -= new Vector3(7.2f, 0, 0) * Time.deltaTime;
-                yield return new WaitForEndOfFrame();
-            }
-
-            o1.localPosition = start1 + new Vector3(end1X, 0, 0);
-            o2.localPosition = start2 + new Vector3(end2X, 0, 0);
-
-            yield return new WaitForSeconds(0.1f);
-
-            while (o1.localPosition.x > start1.x + 8 * Time.deltaTime)
-            {
-                o1.localPosition -= new Vector3(8, 0, 0) * Time.deltaTime;
-                o2.localPosition += new Vector3(7.2f, 0, 0) * Time.deltaTime;
-                yield return new WaitForEndOfFrame();
-            }
-
-            o1.localPosition = start1;
-            o2.localPosition = start2;
-
-            yield return new WaitForSeconds(0.1f);
-
-            while (o1.localPosition.x < start1.x + end1X - 8 * Time.deltaTime)
-            {
-                o1.localPosition += new Vector3(8, 0, 0) * Time.deltaTime;
-                o2.localPosition -= new Vector3(7.2f, 0, 0) * Time.deltaTime;
-                yield return new WaitForEndOfFrame();
-            }
-
-            o1.localPosition = start1 + new Vector3(end1X, 0, 0);
-            o2.localPosition = start2 + new Vector3(end2X, 0, 0);
-
-            yield return new WaitForSeconds(1f);
-
-            while (o1.localPosition.x > start1.x + 8 * Time.deltaTime)
-            {
-                o1.localPosition -= new Vector3(8, 0, 0) * Time.deltaTime;
-                o2.localPosition += new Vector3(7.2f, 0, 0) * Time.deltaTime;
-                yield return new WaitForEndOfFrame();
-            }
-
-            o1.localPosition = start1;
-            o2.localPosition = start2;
-
-            yield return new WaitForSeconds(0.1f);
-
-            while (o1.localPosition.x < start1.x + end1X - 8 * Time.deltaTime)
-            {
-                o1.localPosition += new Vector3(8, 0, 0) * Time.deltaTime;
-                o2.localPosition -= new Vector3(7.2f, 0, 0) * Time.deltaTime;
-                yield return new WaitForEndOfFrame();
-            }
-
-            o1.localPosition = start1 + new Vector3(end1X, 0, 0);
-            o2.localPosition = start2 + new Vector3(end2X, 0, 0);
-
-            yield return new WaitForSeconds(0.1f);
-
-            while (o1.localPosition.x > start1.x + 8 * Time.deltaTime)
-            {
-                o1.localPosition -= new Vector3(8, 0, 0) * Time.deltaTime;
-                o2.localPosition += new Vector3(7.2f, 0, 0) * Time.deltaTime;
-                yield return new WaitForEndOfFrame();
-            }
-
-            o1.localPosition = start1;
-            o2.localPosition = start2;
-
-            yield return new WaitForSeconds(1f);
-
-        }
-    }
-
     public void rotate(Transform t) {
-        t.Rotate(Vector3.up, 1500 * Time.deltaTime);
-        t.Rotate(Vector3.left, 1500 * Time.deltaTime);
-        t.Rotate(Vector3.forward, 1500 * Time.deltaTime);
+        t.Rotate(Vector3.up, Random.Range(0,1000) * Time.deltaTime);
+        t.Rotate(Vector3.left, Random.Range(0, 1000) * Time.deltaTime);
+        t.Rotate(Vector3.forward, Random.Range(0, 1000) * Time.deltaTime);
     }
 
     public IEnumerator RotateAnim() {
@@ -112,5 +36,9 @@ public class ElectricPoles : MonoBehaviour {
             rotate(o2);
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    public void PlaySound() {
+        sound.PlayClipAtPoint("orb_zap", transform.position, 0.2f);
     }
 }

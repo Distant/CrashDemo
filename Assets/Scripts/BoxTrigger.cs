@@ -36,7 +36,7 @@ public class BoxTrigger : Box
         {
             base.OnBounce();
             Trigger();
-            StartCoroutine(PlayJump());
+            mesh.GetComponent<Animator>().Play("box_bounce");
         }
     }
 
@@ -46,7 +46,7 @@ public class BoxTrigger : Box
         {
             base.OnBounce();
             Trigger();
-            StartCoroutine(PlaySpin());
+            mesh.GetComponent<Animator>().Play("box_spin");
         }
     }
 
@@ -58,78 +58,5 @@ public class BoxTrigger : Box
             mesh.gameObject.GetComponent<MeshRenderer>().material = mesh.gameObject.GetComponent<MeshRenderer>().materials[1];
         }
         trigger.Invoke();
-    }
-
-    public IEnumerator PlayJump()
-    {
-        onCooldown = true;
-        float elapsed = 0;
-        while (true)
-        {
-            if (elapsed > 0.05f) break;
-            mesh.localScale = Vector3.Lerp(mesh.localScale, scaleSmall, 30 * Time.deltaTime);
-            mesh.position = Vector3.Lerp(mesh.position, initPos - new Vector3(0, smallY, 0), 20 * Time.deltaTime);
-            elapsed += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-
-        elapsed = 0;
-        while (true)
-        {
-
-            if (elapsed > 0.1f) break;
-            mesh.localScale = Vector3.Lerp(mesh.localScale, scaleBig, 30 * Time.deltaTime);
-            mesh.position = Vector3.Lerp(mesh.position, initPos + new Vector3(0, bigY, 0), 10 * Time.deltaTime);
-            elapsed += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-
-        elapsed = 0;
-        while (true)
-        {
-            if (elapsed > 0.05f) break;
-            mesh.localScale = Vector3.Lerp(mesh.localScale, initScale, 20 * Time.deltaTime);
-            mesh.position = Vector3.Lerp(mesh.position, initPos, 20 * Time.deltaTime);
-            elapsed += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-
-        mesh.localScale = initScale;
-        mesh.position = initPos;
-
-
-        yield return new WaitForSeconds(0.2f);
-        onCooldown = false;
-    }
-
-    public IEnumerator PlaySpin()
-    {
-        onCooldown = true;
-        float elapsed = 0;
-        while (true)
-        {
-            if (elapsed > 0.1f) break;
-            mesh.localScale = Vector3.Lerp(mesh.localScale, scaleBigSpin, 30 * Time.deltaTime);
-            mesh.position = Vector3.Lerp(mesh.position, initPos - new Vector3(0, bigYSpin, 0), 20 * Time.deltaTime);
-            elapsed += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-
-        elapsed = 0;
-        while (true)
-        {
-            if (elapsed > 0.1f) break;
-            mesh.localScale = Vector3.Lerp(mesh.localScale, initScale, 20 * Time.deltaTime);
-            mesh.position = Vector3.Lerp(mesh.position, initPos, 20 * Time.deltaTime);
-            elapsed += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-
-        mesh.localScale = initScale;
-        mesh.position = initPos;
-
-
-        yield return new WaitForSeconds(0.2f);
-        onCooldown = false;
     }
 }
