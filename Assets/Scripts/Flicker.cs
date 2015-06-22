@@ -5,6 +5,8 @@ public class Flicker : MonoBehaviour {
 
     public float minFlickerSpeed = 0.05f;
     public float maxFlickerSpeed = 0.2f;
+    public float maxEm = 1.02f;
+    public float minEm = 0.97f;
     public Material material;
 
 	// Use this for initialization
@@ -24,9 +26,9 @@ public class Flicker : MonoBehaviour {
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(minFlickerSpeed, maxFlickerSpeed));
-            material.SetColor("_EmissionColor", col * 1.02f);
+            material.SetColor("_EmissionColor", col * minEm);
             yield return new WaitForSeconds(Random.Range(minFlickerSpeed, maxFlickerSpeed));
-            material.SetColor("_EmissionColor", col * 0.97f);
+            material.SetColor("_EmissionColor", col * maxEm);
         }
     }
 }

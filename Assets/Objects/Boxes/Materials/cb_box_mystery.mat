@@ -8,8 +8,8 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: cb_box_mystery
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
+  m_ShaderKeywords: _EMISSION
+  m_LightmapFlags: 1
   m_CustomRenderQueue: -1
   m_SavedProperties:
     serializedVersion: 2
@@ -53,7 +53,7 @@ Material:
         first:
           name: _EmissionMap
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 34d89a04090180044a76155540037242, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -139,7 +139,7 @@ Material:
       data:
         first:
           name: _EmissionScaleUI
-        second: 0
+        second: .300000012
       data:
         first:
           name: _Mode
@@ -150,21 +150,21 @@ Material:
         second: 0
       data:
         first:
-          name: _EdgeLength
-        second: 10
-      data:
-        first:
           name: _BumpAmt
         second: 100.099998
       data:
         first:
           name: _Outline
         second: .00499999989
+      data:
+        first:
+          name: _EdgeLength
+        second: 10
     m_Colors:
       data:
         first:
           name: _EmissionColor
-        second: {r: 0, g: 0, b: 0, a: 0}
+        second: {r: .280147374, g: .279869378, b: .265728235, a: .300000012}
       data:
         first:
           name: _Color
@@ -176,7 +176,7 @@ Material:
       data:
         first:
           name: _EmissionColorUI
-        second: {r: 1, g: .825963497, b: .713235259, a: 1}
+        second: {r: .933823526, g: .932896912, b: .885759056, a: 1}
       data:
         first:
           name: _OutlineColor
