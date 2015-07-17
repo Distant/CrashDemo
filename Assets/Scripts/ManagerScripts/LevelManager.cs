@@ -51,7 +51,6 @@ public class LevelManager : MonoBehaviour
         inventoryManager.VerifyBoxCount();
         image.enabled = true;
         created = false;
-        Application.LoadLevel(1);
         Destroy(inventoryManager.inventoryPanel.parent.gameObject);
         Destroy(this.gameObject);
     }

@@ -4,63 +4,71 @@ using System;
 
 public class Trapdoor : MonoBehaviour, Triggerable {
 
-    public Transform left;
-    public Transform right;
+    public enum Direction {
+        HORIZONTAL, VERITCAL
+    }
+
     private bool moving = false;
-    private float speed = 0.075f;
     public bool sticky;
+    public bool requiresTrigger;
+
     public float openTime;
     public float closeTime;
+    public Direction direction;
+    private Animator anim;
+
+    public Transform player;
+    private bool active = true;
+    public bool requirePlayer;
 
     // Use this for initialization
     void Start() {
-       
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update() {
-        if (!moving && !sticky) {
+        if (!moving && !requiresTrigger) {
             StartCoroutine(Move());
         }
+
+        if (requirePlayer) {
+            if (!sticky && player.position.z > transform.position.z)
+            {
+                sticky = true;
+                Open();
+            }
+
+            else if (sticky && player.position.z < transform.position.z)
+            {
+                sticky = false;
+                Close();
+            }
+        }
+        
     }
 
     public IEnumerator Move()
     {
         moving = true;
-        Vector3 initLeft = left.position;
-        Vector3 initRight = right.position;
-        while (true)
-        {
-            while ((left.position - initLeft).x > -1)
-            {
-                left.position -= new Vector3(speed,0,0);
-                right.position += new Vector3(speed, 0, 0);
-                yield return new WaitForEndOfFrame();
-            }
-
-            left.position = initLeft + new Vector3(-1, 0, 0);
-            right.position = initRight + new Vector3(1, 0, 0);
-
-            yield return new WaitForSeconds(openTime);
-            if (sticky) { moving = false; break; }
-            else {
-                while ((left.position - initLeft).x < 0)
-                {
-                    left.position += new Vector3(speed, 0, 0);
-                    right.position -= new Vector3(speed, 0, 0);
-                    yield return new WaitForEndOfFrame();
-                }
-
-                left.position = initLeft;
-                right.position = initRight;
-
-                yield return new WaitForSeconds(closeTime);
-            }
+        Open();
+        yield return new WaitForSeconds(openTime + 0.5f);
+        if (!sticky) {
+            Close();
+            yield return new WaitForSeconds(closeTime + 0.5f);
         }
+        moving = false;
+    }
+
+    public void Open() {
+        anim.SetBool("open", true);
+    }
+    public void Close() {
+        anim.SetBool("open", false);
     }
 
     public void OnTrigger()
     {
-        if (!moving && sticky) StartCoroutine(Move());
+        if (!moving) StartCoroutine(Move());
     }
 }

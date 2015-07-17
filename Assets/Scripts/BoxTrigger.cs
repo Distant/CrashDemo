@@ -5,13 +5,11 @@ using UnityEngine.Events;
 public class BoxTrigger : Box
 {
 
-    public float cooldown = 0.5f;
+    public float cooldown;
     private bool onCooldown = false;
     public Vector3 scaleBig;
     public Vector3 scaleBigSpin;
     public Vector3 scaleSmall;
-    private Vector3 initScale;
-    private Vector3 initPos;
     public float smallY;
     public float bigY;
     public float bigYSpin;
@@ -22,12 +20,25 @@ public class BoxTrigger : Box
 
     public UnityEvent trigger;
 
+    private Animator animator;
+
     // Use this for initialization
     public override void Start()
     {
         base.Start();
-        initScale = mesh.localScale;
-        initPos = mesh.position;
+        animator = GetComponent<Animator>();
+    }
+
+    public void Update() {
+        if (cooldown >= 0)
+        {
+            cooldown -= Time.deltaTime;
+        }
+        else
+        {
+            onCooldown = false;
+            animator.SetBool("on_cooldown", onCooldown);
+        }
     }
 
     public override void OnBounce()
@@ -36,7 +47,11 @@ public class BoxTrigger : Box
         {
             base.OnBounce();
             Trigger();
-            mesh.GetComponent<Animator>().Play("box_bounce");
+            animator.SetTrigger("bounce");
+            levelManager.SoundManager.PlayClipAtPoint("box_trigger", transform.position, 0.05f);
+            onCooldown = true;
+            animator.SetBool("on_cooldown", onCooldown);
+            cooldown = 0.4f;
         }
     }
 
@@ -46,7 +61,11 @@ public class BoxTrigger : Box
         {
             base.OnBounce();
             Trigger();
-            mesh.GetComponent<Animator>().Play("box_spin");
+            animator.SetTrigger("spin");
+            levelManager.SoundManager.PlayClipAtPoint("box_trigger", transform.position, 0.05f);
+            onCooldown = true;
+            animator.SetBool("on_cooldown", onCooldown);
+            cooldown = 0.4f;
         }
     }
 
