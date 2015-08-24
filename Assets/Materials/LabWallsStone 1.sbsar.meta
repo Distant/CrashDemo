@@ -1,12 +1,12 @@
 fileFormatVersion: 2
 guid: 5c505a2ae41b9984bb432fb20ea935e9
-timeCreated: 1434963069
+timeCreated: 1436461591
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
   materialInstances:
   - serializedVersion: 16
-    name: LabWallsStone
+    name: LabWallsStone2
     prototypeName: LabWallsStone
     shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
     shaderKeywords: 
@@ -96,16 +96,16 @@ SubstanceImporter:
       floats:
         data:
           first:
-            name: _Cutoff
-          second: .5
-        data:
-          first:
             name: _SrcBlend
           second: 1
         data:
           first:
             name: _DstBlend
           second: 0
+        data:
+          first:
+            name: _Cutoff
+          second: .5
         data:
           first:
             name: _Parallax
@@ -160,17 +160,17 @@ SubstanceImporter:
             name: _EmissionColorUI
           second: {r: 1, g: 1, b: 1, a: 1}
     textureParameters:
-    - name: LabWallsStone_basecolor
+    - name: LabWallsStone2_basecolor
       alphaSource: 6
       filterMode: 1
       aniso: 1
       wrapMode: 0
-    - name: LabWallsStone_normal
+    - name: LabWallsStone2_normal
       alphaSource: 0
       filterMode: 1
       aniso: 1
       wrapMode: 0
-    - name: LabWallsStone_metallic
+    - name: LabWallsStone2_metallic
       alphaSource: 7
       filterMode: 1
       aniso: 1

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 076d90224c9931740aad999a730c449c
-timeCreated: 1434963054
+timeCreated: 1435761510
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -8,8 +8,8 @@ SubstanceImporter:
   - serializedVersion: 16
     name: LabWallsStone
     prototypeName: LabWallsStone
-    shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-    shaderKeywords: _NORMALMAP
+    shader: {fileID: 4800000, guid: 0a4b0bce1e250a14bb534d70bce205fa, type: 3}
+    shaderKeywords: _NORMALMAP _PARALLAXMAP
     renderQueue: -1
     lightmapFlags: 5
     inputs:
@@ -34,70 +34,26 @@ SubstanceImporter:
           first:
             name: _MainTex
           second:
-            texture: {instanceID: 0}
+            texture: {fileID: -1400189063, guid: 076d90224c9931740aad999a730c449c,
+              type: 3}
             scale: {x: 6, y: 8}
             offset: {x: 0, y: 0}
         data:
           first:
             name: _BumpMap
           second:
-            texture: {instanceID: 0}
+            texture: {fileID: -94437825, guid: 076d90224c9931740aad999a730c449c, type: 3}
             scale: {x: 6, y: 8}
-            offset: {x: 0, y: 0}
-        data:
-          first:
-            name: _DetailNormalMap
-          second:
-            texture: {instanceID: 0}
-            scale: {x: 1, y: 1}
             offset: {x: 0, y: 0}
         data:
           first:
             name: _ParallaxMap
           second:
-            texture: {instanceID: 0}
-            scale: {x: 1, y: 1}
-            offset: {x: 0, y: 0}
-        data:
-          first:
-            name: _OcclusionMap
-          second:
-            texture: {instanceID: 0}
-            scale: {x: 1, y: 1}
-            offset: {x: 0, y: 0}
-        data:
-          first:
-            name: _EmissionMap
-          second:
-            texture: {instanceID: 0}
-            scale: {x: 1, y: 1}
-            offset: {x: 0, y: 0}
-        data:
-          first:
-            name: _DetailMask
-          second:
-            texture: {instanceID: 0}
-            scale: {x: 1, y: 1}
-            offset: {x: 0, y: 0}
-        data:
-          first:
-            name: _DetailAlbedoMap
-          second:
-            texture: {instanceID: 0}
-            scale: {x: 1, y: 1}
-            offset: {x: 0, y: 0}
-        data:
-          first:
-            name: _MetallicGlossMap
-          second:
-            texture: {instanceID: 0}
+            texture: {fileID: -1521287610, guid: 076d90224c9931740aad999a730c449c,
+              type: 3}
             scale: {x: 6, y: 8}
             offset: {x: 0, y: 0}
       floats:
-        data:
-          first:
-            name: _Cutoff
-          second: .5
         data:
           first:
             name: _SrcBlend
@@ -108,8 +64,16 @@ SubstanceImporter:
           second: 0
         data:
           first:
+            name: _Cutoff
+          second: .5
+        data:
+          first:
+            name: _Shininess
+          second: .189999998
+        data:
+          first:
             name: _Parallax
-          second: .0199999996
+          second: 0
         data:
           first:
             name: _ZWrite
@@ -146,6 +110,10 @@ SubstanceImporter:
           first:
             name: _Metallic
           second: 0
+        data:
+          first:
+            name: _EdgeLength
+          second: 12.1000004
       colors:
         data:
           first:
@@ -155,6 +123,10 @@ SubstanceImporter:
           first:
             name: _Color
           second: {r: 1, g: 1, b: 1, a: 1}
+        data:
+          first:
+            name: _SpecColor
+          second: {r: .5, g: .5, b: .5, a: 1}
         data:
           first:
             name: _EmissionColorUI
@@ -175,6 +147,11 @@ SubstanceImporter:
       filterMode: 1
       aniso: 1
       wrapMode: 0
+    - name: LabWallsStone_output
+      alphaSource: 3
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
     textureAssignments:
     - shaderProp:
         name: _MainTex
@@ -185,9 +162,9 @@ SubstanceImporter:
       material: {instanceID: 0}
       baseUID: 895817491
     - shaderProp:
-        name: _MetallicGlossMap
+        name: _ParallaxMap
       material: {instanceID: 0}
-      baseUID: 895817495
+      baseUID: 874180307
     buildTargetSettings:
     - serializedVersion: 2
       buildTarget: 

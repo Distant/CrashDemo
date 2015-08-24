@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 10318031038719844a9aec2913f9c364
-timeCreated: 1434963003
+timeCreated: 1437311919
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -96,16 +96,16 @@ SubstanceImporter:
       floats:
         data:
           first:
-            name: _Cutoff
-          second: .5
-        data:
-          first:
             name: _SrcBlend
           second: 1
         data:
           first:
             name: _DstBlend
           second: 0
+        data:
+          first:
+            name: _Cutoff
+          second: .5
         data:
           first:
             name: _Parallax
@@ -136,21 +136,21 @@ SubstanceImporter:
           second: 0
         data:
           first:
-            name: _EmissionScaleUI
-          second: 1
-        data:
-          first:
             name: _Mode
           second: 0
         data:
           first:
             name: _Metallic
           second: 0
+        data:
+          first:
+            name: _EmissionScaleUI
+          second: 1
       colors:
         data:
           first:
             name: _EmissionColor
-          second: {r: .705890238, g: .951322019, b: 1, a: 1}
+          second: {r: .558823526, g: .926977634, b: 1, a: 1}
         data:
           first:
             name: _Color

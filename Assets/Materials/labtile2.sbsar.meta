@@ -1,12 +1,12 @@
 fileFormatVersion: 2
 guid: 2da8127abc1a3fd4bb8dcfe29b67d962
-timeCreated: 1434963037
+timeCreated: 1437328311
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
   materialInstances:
   - serializedVersion: 16
-    name: labtile2
+    name: labtile3
     prototypeName: labtile2
     shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
     shaderKeywords: _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
@@ -84,7 +84,7 @@ SubstanceImporter:
             name: _DetailAlbedoMap
           second:
             texture: {instanceID: 0}
-            scale: {x: 1, y: .5}
+            scale: {x: 1, y: 1}
             offset: {x: 0, y: 0}
         data:
           first:
@@ -96,10 +96,6 @@ SubstanceImporter:
       floats:
         data:
           first:
-            name: _Cutoff
-          second: .5
-        data:
-          first:
             name: _SrcBlend
           second: 1
         data:
@@ -108,8 +104,12 @@ SubstanceImporter:
           second: 0
         data:
           first:
+            name: _Cutoff
+          second: .5
+        data:
+          first:
             name: _Parallax
-          second: .0313999988
+          second: .0219999999
         data:
           first:
             name: _ZWrite
@@ -117,11 +117,11 @@ SubstanceImporter:
         data:
           first:
             name: _Glossiness
-          second: .150000006
+          second: .231999993
         data:
           first:
             name: _BumpScale
-          second: 1
+          second: 2
         data:
           first:
             name: _OcclusionStrength
@@ -136,21 +136,21 @@ SubstanceImporter:
           second: 0
         data:
           first:
-            name: _EmissionScaleUI
-          second: 0
-        data:
-          first:
             name: _Mode
           second: 0
         data:
           first:
             name: _Metallic
+          second: .130999997
+        data:
+          first:
+            name: _EmissionScaleUI
           second: 0
       colors:
         data:
           first:
             name: _EmissionColor
-          second: {r: 0, g: 0, b: 0, a: 0}
+          second: {r: 0, g: 0, b: 0, a: 1}
         data:
           first:
             name: _Color
@@ -160,27 +160,27 @@ SubstanceImporter:
             name: _EmissionColorUI
           second: {r: 1, g: 1, b: 1, a: 1}
     textureParameters:
-    - name: labtile2_basecolor
+    - name: labtile3_basecolor
       alphaSource: 6
       filterMode: 1
       aniso: 1
       wrapMode: 0
-    - name: labtile2_normal
+    - name: labtile3_normal
       alphaSource: 0
       filterMode: 1
       aniso: 1
       wrapMode: 0
-    - name: labtile2_metallic
+    - name: labtile3_metallic
       alphaSource: 6
       filterMode: 1
       aniso: 1
       wrapMode: 0
-    - name: labtile2_height
+    - name: labtile3_height
       alphaSource: 0
       filterMode: 1
       aniso: 1
       wrapMode: 0
-    - name: labtile2_roughness
+    - name: labtile3_roughness
       alphaSource: 0
       filterMode: 1
       aniso: 1

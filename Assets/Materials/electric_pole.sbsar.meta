@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 40ff2bcfd4616d646b63683f152d29d3
-timeCreated: 1434962976
+timeCreated: 1437298305
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -9,7 +9,7 @@ SubstanceImporter:
     name: electric_pole
     prototypeName: electric_pole
     shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-    shaderKeywords: 
+    shaderKeywords: _METALLICGLOSSMAP _NORMALMAP
     renderQueue: -1
     lightmapFlags: 5
     inputs:
@@ -96,16 +96,16 @@ SubstanceImporter:
       floats:
         data:
           first:
-            name: _Cutoff
-          second: .5
-        data:
-          first:
             name: _SrcBlend
           second: 1
         data:
           first:
             name: _DstBlend
           second: 0
+        data:
+          first:
+            name: _Cutoff
+          second: .5
         data:
           first:
             name: _Parallax
@@ -136,15 +136,15 @@ SubstanceImporter:
           second: 0
         data:
           first:
-            name: _EmissionScaleUI
-          second: 0
-        data:
-          first:
             name: _Mode
           second: 0
         data:
           first:
             name: _Metallic
+          second: 0
+        data:
+          first:
+            name: _EmissionScaleUI
           second: 0
         data:
           first:
@@ -154,7 +154,7 @@ SubstanceImporter:
         data:
           first:
             name: _EmissionColor
-          second: {r: 0, g: 0, b: 0, a: 0}
+          second: {r: 0, g: 0, b: 0, a: 1}
         data:
           first:
             name: _Color

@@ -10,6 +10,11 @@ TagManager:
   - Box
   - EndTrigger
   - SoundManager
+  - Moveable
+  - PauseMenu
+  - player_big_collider
+  - GameManager
+  - EndLevel
   layers:
   - Default
   - TransparentFX
@@ -19,7 +24,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - static
   - 
   - 
   - 

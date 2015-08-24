@@ -12,6 +12,7 @@ GameObject:
   - 54: {fileID: 5443250}
   - 65: {fileID: 6505390}
   - 114: {fileID: 11495010}
+  - 95: {fileID: 9580296}
   m_Layer: 0
   m_Name: switch_box
   m_TagString: Box
@@ -29,7 +30,6 @@ GameObject:
   - 4: {fileID: 457978}
   - 23: {fileID: 2322934}
   - 33: {fileID: 3383184}
-  - 95: {fileID: 9549850}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -43,8 +43,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 8.14603425e-08, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.33599997, y: .344999999, z: 23.2029991}
+  m_LocalRotation: {x: 8.14603425e-08, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 131.563995, y: 57.545002, z: -26.8969994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 457978}
@@ -133,15 +133,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .550000012, y: .5, z: .550000012}
   m_Center: {x: 0, y: 0, z: .25}
---- !u!95 &9549850
+--- !u!95 &9580296
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 165636}
+  m_GameObject: {fileID: 100000}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 09134b6686b1ed449912abf9870559bf, type: 3}
+  m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 41ac9f6f3f47ca94d856647d6f322fbe, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 2
@@ -162,14 +162,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakable: 0
-  cooldown: .5
-  scaleBig: {x: .699999988, y: 1.29999995, z: .699999988}
-  scaleBigSpin: {x: .699999988, y: 1.70000005, z: .699999988}
-  scaleSmall: {x: 1.39999998, y: .699999988, z: 1.39999998}
-  smallY: .0799999982
-  bigY: .0850000009
-  bigYSpin: .0179999992
-  repeatable: 0
+  canSpin: 1
+  canBounce: 1
+  bounceTotal: 0
+  jumpSpeed: 6
+  coolDownTime: .400000006
+  collider: {fileID: 0}
+  repeatable: 1
   mesh: {fileID: 457978}
   trigger:
     m_PersistentCalls:
@@ -179,8 +178,7 @@ MonoBehaviour:
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -194,7 +192,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: coolDownTime
+      value: .400000006
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}

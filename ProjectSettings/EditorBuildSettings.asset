@@ -5,7 +5,17 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
+    path: Assets/init.unity
+  - enabled: 1
+    path: Assets/WorldMap.unity
+  - enabled: 1
+    path: Assets/level6_terraintesting.unity
+  - enabled: 1
     path: Assets/level1.unity
   - enabled: 1
     path: Assets/level3.unity
+  - enabled: 0
+    path: Assets/slippery_climb.unity
+  - enabled: 0
+    path: Assets/level6.unity

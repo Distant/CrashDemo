@@ -20,7 +20,6 @@ public class NodeControl : MonoBehaviour
 	{
 		if (other.tag == "CameraNodeTrigger") {
 			CameraFollow cameraFollow = ((CameraFollow)Camera.main.gameObject.GetComponent<CameraFollow> ());
-			cameraFollow.NextNode (other.gameObject.GetComponentInParent<CameraNode> ());
 		}
 	}
 }
