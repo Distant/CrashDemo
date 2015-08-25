@@ -10,8 +10,8 @@ public class LevelSelect : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		game = GameObject.FindGameObjectWithTag ("GameManager").GetComponent<GameManager> ();
-		for (int i = 0; i < Mathf.Min(game.LevelsUnlocked, levelList.Length); i++) {
-			levelList[i].gameObject.SetActive(true);
+		for (int i = levelList.Length - 1; i > Mathf.Max(game.LevelsUnlocked - 1, 0); i--) {
+			levelList[i].DisableNode();
 		}
 		levelList [selectedIndex].Select ();
 	}
@@ -31,8 +31,7 @@ public class LevelSelect : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			GameObject o = GameObject.FindGameObjectWithTag("GameManager");
-			if (o != null) o.GetComponent<GameManager>().LoadLevel(selectedIndex + 2);
+			game.LoadLevel(selectedIndex + 2);
 		}
 	}
 

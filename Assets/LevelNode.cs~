@@ -12,6 +12,10 @@ public class LevelNode : MonoBehaviour {
 	[SerializeField]
 	private TextMesh textMesh;
 
+	[SerializeField]
+	private Material boxMaterial;
+	private Color initColor;
+
 	void Awake(){
 		spotLight = GetComponentInChildren<Light> ();
 		Deselect ();
@@ -22,8 +26,12 @@ public class LevelNode : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () { 
 	
+	}
+
+	public void DisableNode(){
+		GetComponent<MeshRenderer>().material.color = new Color(0.5f,0.5f,0.5f,1);
 	}
 
 	public void Select(){
