@@ -21,6 +21,22 @@ public class CameraFollow : MonoBehaviour
 
 	private KinematicCharacterControl controller;
 
+	Vector3 playerPos;
+	Vector3 nodePos; 
+	Vector3 nextNodePos;
+	Vector3 nodesVec;
+	Vector3 nodeDist;
+
+	float totalDist;
+	float playerDist;
+	float ratio;
+	
+	float cameraHeight;
+	float heightOffset;
+
+	float yPos;
+	float cameraDist;
+
     // Use this for initialization
     void Start()
     {
@@ -54,36 +70,36 @@ public class CameraFollow : MonoBehaviour
             }
         }
 
-		Vector3 playerPos = !addDirectionOffset ? player.position : player.position + new Vector3((controller.CurrentRotation < 180 && controller.CurrentRotation > 0) ? 1 : -1,0,0) * 1.2f;
+		playerPos = !addDirectionOffset ? player.position : player.position + new Vector3((controller.CurrentRotation < 180 && controller.CurrentRotation > 0) ? 1 : -1,0,0) * 1.2f;
         playerPos.y = 0;
-        Vector3 nodePos = currentEdge.node1.transform.position; nodePos.y = 0;
-        Vector3 nextNodePos = currentEdge.node2.transform.position; nextNodePos.y = 0;
-        Vector3 nodesVec = nextNodePos - nodePos;
+        nodePos = currentEdge.node1.transform.position; nodePos.y = 0;
+        nextNodePos = currentEdge.node2.transform.position; nextNodePos.y = 0;
+        nodesVec = nextNodePos - nodePos;
 
-        Vector3 nodeDist = (currentEdge.node2.transform.position - currentEdge.node1.transform.position);
+        nodeDist = (currentEdge.node2.transform.position - currentEdge.node1.transform.position);
 
         // TODO change ratio calculation to ratio of distance between bisected edges between nodes
 
-        float totalDist = Vector3.Distance(nextNodePos, nodePos);
-        float playerDist = Vector3.Dot(playerPos - nodePos, nodesVec / nodesVec.magnitude);
-        float ratio = playerDist / totalDist;
+        totalDist = Vector3.Distance(nextNodePos, nodePos);
+        playerDist = Vector3.Dot(playerPos - nodePos, nodesVec / nodesVec.magnitude);
+        ratio = playerDist / totalDist;
 
         if (ratio < 0) ratio = 0;
         else if (ratio > 1) ratio = 1;
 
-        float cameraHeight = currentEdge.node1.transform.position.y + (currentEdge.node2.transform.position.y - currentEdge.node1.transform.position.y) * ratio;
-        float heightOffset = currentEdge.node1.heightOffset + (currentEdge.node2.heightOffset - currentEdge.node1.heightOffset) * ratio;
+        cameraHeight = currentEdge.node1.transform.position.y + (currentEdge.node2.transform.position.y - currentEdge.node1.transform.position.y) * ratio;
+        heightOffset = currentEdge.node1.heightOffset + (currentEdge.node2.heightOffset - currentEdge.node1.heightOffset) * ratio;
 
-        float yPos = currentEdge.followPlayer ? player.transform.position.y + 1.5f : player.GetComponentInChildren<CharacterControl>().height + cameraHeight + 2f + heightOffset;
+        yPos = currentEdge.followPlayer ? player.transform.position.y + 1.5f : player.GetComponentInChildren<CharacterControl>().height + cameraHeight + 2f + heightOffset;
 	
         newRot = Quaternion.Lerp(currentEdge.node1.transform.rotation, currentEdge.node2.transform.rotation, ratio);
         this.transform.rotation = lerp? Quaternion.Slerp(this.transform.rotation, newRot, longTimeStep * Time.deltaTime) : newRot;
 
-        float cameraDist = CalculateCameraDist(currentEdge, ratio);
+        cameraDist = CalculateCameraDist(currentEdge, ratio);
 
         newPos = new Vector3(currentEdge.node1.transform.position.x + (currentEdge.node2.transform.position.x - currentEdge.node1.transform.position.x) * ratio, yPos, currentEdge.node1.transform.position.z + nodeDist.z * ratio);
         newPos = RotatePointAroundPivot(newPos - new Vector3(0, 0, cameraDist), newPos, new Vector3(0, newRot.eulerAngles.y, 0));
-		this.transform.position = lerp? Vector3.MoveTowards (transform.position, newPos, Vector3.Distance(transform.position,newPos) /24) : newPos;
+		this.transform.position = lerp? Vector3.MoveTowards (transform.position, newPos, Vector3.Distance(transform.position,newPos) /20) : newPos;
     }
     
     public float CalculateCameraDist(CameraEdge currentEdge, float ratio)
