@@ -37,6 +37,8 @@ public class CameraFollow : MonoBehaviour
 	float yPos;
 	float cameraDist;
 
+	float time;
+
     // Use this for initialization
     void Start()
     {
@@ -51,6 +53,7 @@ public class CameraFollow : MonoBehaviour
     }
 
     private void TransformCamera(bool lerp) {
+		time = Time.realtimeSinceStartup;
         foreach (CameraEdge edge in currentEdge.adjascentEdges().OrderBy(e => MinimumDistance3D(e.node1.transform.position,
                                                            e.node2.transform.position,
                                                            player.transform.position)).ToArray())
@@ -90,7 +93,7 @@ public class CameraFollow : MonoBehaviour
         cameraHeight = currentEdge.node1.transform.position.y + (currentEdge.node2.transform.position.y - currentEdge.node1.transform.position.y) * ratio;
         heightOffset = currentEdge.node1.heightOffset + (currentEdge.node2.heightOffset - currentEdge.node1.heightOffset) * ratio;
 
-        yPos = currentEdge.followPlayer ? player.transform.position.y + 1.5f : player.GetComponentInChildren<CharacterControl>().height + cameraHeight + 2f + heightOffset;
+        yPos = currentEdge.followPlayer ? player.transform.position.y + 1.5f : controller.height + cameraHeight + 2f + heightOffset;
 	
         newRot = Quaternion.Lerp(currentEdge.node1.transform.rotation, currentEdge.node2.transform.rotation, ratio);
         this.transform.rotation = lerp? Quaternion.Slerp(this.transform.rotation, newRot, longTimeStep * Time.deltaTime) : newRot;
@@ -99,7 +102,7 @@ public class CameraFollow : MonoBehaviour
 
         newPos = new Vector3(currentEdge.node1.transform.position.x + (currentEdge.node2.transform.position.x - currentEdge.node1.transform.position.x) * ratio, yPos, currentEdge.node1.transform.position.z + nodeDist.z * ratio);
         newPos = RotatePointAroundPivot(newPos - new Vector3(0, 0, cameraDist), newPos, new Vector3(0, newRot.eulerAngles.y, 0));
-		this.transform.position = lerp? Vector3.MoveTowards (transform.position, newPos, Vector3.Distance(transform.position,newPos) /20) : newPos;
+		this.transform.position = lerp? Vector3.MoveTowards (transform.position, newPos, Vector3.Distance(transform.position,newPos) /20) : newPos; 
     }
     
     public float CalculateCameraDist(CameraEdge currentEdge, float ratio)
