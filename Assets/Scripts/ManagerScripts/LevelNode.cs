@@ -31,7 +31,8 @@ public class LevelNode : MonoBehaviour {
 	}
 
 	public void DisableNode(){
-		GetComponent<MeshRenderer>().material.color = new Color(0.5f,0.5f,0.5f,1);
+		//GetComponent<MeshRenderer>().material.color = new Color(0.5f,0.5f,0.5f,1);
+		gameObject.SetActive (false);
 	}
 
 	public void Select(){

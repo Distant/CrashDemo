@@ -14,17 +14,18 @@ public class LevelSelect : MonoBehaviour {
 			levelList[i].DisableNode();
 		}
 		levelList [selectedIndex].Select ();
+		int length = levelList.Length;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.D)) {
+		if (Input.GetKeyDown (KeyCode.D) || Input.GetKeyDown (KeyCode.RightArrow)) {
 			levelList[selectedIndex].Deselect();
 			IncreaseIndex(ref selectedIndex, game.LevelsUnlocked);
 			levelList[selectedIndex].Select() ;
 		}
 
-		if (Input.GetKeyDown (KeyCode.A)) {
+		if (Input.GetKeyDown (KeyCode.A)|| Input.GetKeyDown (KeyCode.LeftArrow)) {
 			levelList[selectedIndex].Deselect();
 			DecreaseIndex(ref selectedIndex, game.LevelsUnlocked);
 			levelList[selectedIndex].Select();
