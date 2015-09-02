@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ea1e2f16515d3e24ab4b069b21e0a4cd
-timeCreated: 1436463118
+timeCreated: 1441027280
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -172,6 +172,11 @@ SubstanceImporter:
       wrapMode: 0
     - name: arch_base_metallic
       alphaSource: 7
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: arch_base_roughness
+      alphaSource: 0
       filterMode: 1
       aniso: 1
       wrapMode: 0
