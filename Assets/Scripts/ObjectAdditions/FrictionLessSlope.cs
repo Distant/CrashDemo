@@ -5,8 +5,8 @@ public class FrictionLessSlope : MonoBehaviour {
 
 	public float Speed;
 	private bool open = false;
-	private bool playerInTrigger;
-	private Animator anim;
+	public bool playerInTrigger;
+	private Animator anim; 
 
 	[SerializeField]
 	private float animOffset;
@@ -18,12 +18,12 @@ public class FrictionLessSlope : MonoBehaviour {
 	[SerializeField]
 	private BoxCollider[] colliders;
 
-	private KinematicCharacterControl player;
+	private CharacterControl player; 
 
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
-		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<KinematicCharacterControl> ();
+		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<CharacterControl> ();
 		StartCoroutine (Switch ());
 	}
 	
