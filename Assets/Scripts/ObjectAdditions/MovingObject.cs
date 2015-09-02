@@ -17,11 +17,13 @@ public class MovingObject : MonoBehaviour
 
     public void OnCollisionEnter(Collision col)
     {
-        if (col.collider.tag == "Player") { col.transform.parent = this.transform; print("player parent now " + this.name); }
+        if (col.collider.tag == "Player") { col.transform.parent = this.transform; }
     }
 
     public void OnCollisionExit(Collision col)
     {
-        if (col.collider.tag == "Player" && col.transform.parent == this.transform) col.transform.parent = null;
+		if (col.collider.tag == "Player" && col.transform.parent == this.transform) {
+			col.transform.parent = null;
+		}
     }
 }
