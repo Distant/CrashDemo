@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 81c377a825e4d9b4588fde3cb39e7d06
-timeCreated: 1436461604
+timeCreated: 1441027440
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -24,7 +24,7 @@ SubstanceImporter:
       serializedVersion: 5
       offset: {x: .219999999, y: .00999999978}
       scale: {x: .100000001, y: .100000001}
-      generateMipmaps: 1
+      generateMipmaps: 0
       generateAllOutputs: 0
       animationUpdateRate: 0
     materialProperties:
