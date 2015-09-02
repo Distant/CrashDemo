@@ -17,9 +17,9 @@ public class CameraFollow : MonoBehaviour
 	private Quaternion newRot;
 	public Vector3 TargetCameraRotation {get { return newRot.eulerAngles; }}
 
-	private bool addDirectionOffset = false;
+	[SerializeField] private bool addDirectionOffset = false ;
 
-	private KinematicCharacterControl controller;
+	private CharacterControl controller;
 
 	Vector3 playerPos;
 	Vector3 nodePos; 
@@ -37,12 +37,10 @@ public class CameraFollow : MonoBehaviour
 	float yPos;
 	float cameraDist;
 
-	float time;
-
     // Use this for initialization
     void Start()
     {
-		controller = player.GetComponent<KinematicCharacterControl> ();
+		controller = player.GetComponent<CharacterControl> ();
         TransformCamera(false);
     }
 
@@ -53,7 +51,6 @@ public class CameraFollow : MonoBehaviour
     }
 
     private void TransformCamera(bool lerp) {
-		time = Time.realtimeSinceStartup;
         foreach (CameraEdge edge in currentEdge.adjascentEdges().OrderBy(e => MinimumDistance3D(e.node1.transform.position,
                                                            e.node2.transform.position,
                                                            player.transform.position)).ToArray())
