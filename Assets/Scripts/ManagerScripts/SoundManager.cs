@@ -36,10 +36,10 @@ public class SoundManager : MonoBehaviour
             {
                 GameObject tempGO = new GameObject("OneShotAudio");
                 CheckIfNull();
-                tempGO.transform.position = position - (player.position - mainCamera.position);
+				tempGO.transform.position = mainCamera.position ;
                 AudioSource aSource = tempGO.AddComponent<AudioSource>();
                 aSource.clip = sounds[key];
-                aSource.spatialBlend = 1;
+                aSource.spatialBlend = 0;
                 aSource.volume = volume;
                 aSource.rolloffMode = AudioRolloffMode.Linear;
                 aSource.dopplerLevel = 0;
