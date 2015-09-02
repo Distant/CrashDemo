@@ -12,8 +12,6 @@ public class BoxTrigger : Box
 
     public UnityEvent trigger;
 
-    private Animator animator;
-
     // Use this for initialization
     public override void Start()
     {
