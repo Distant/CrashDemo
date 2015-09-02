@@ -8,19 +8,31 @@ ModelImporter:
     100000: archSmall
     100002: //RootNode
     100004: WallSmall
+    100006: arch_small
+    100008: wall_small
     400000: archSmall
     400002: //RootNode
     400004: WallSmall
+    400006: arch_small
+    400008: wall_small
     2300000: archSmall
     2300002: WallSmall
+    2300004: arch_small
+    2300006: wall_small
     3300000: archSmall
     3300002: WallSmall
+    3300004: arch_small
+    3300006: wall_small
     4300000: archSmall
     4300002: WallSmall
+    4300004: arch_small
+    4300006: wall_small
     6400000: archSmall
     6400002: WallSmall
+    6400004: arch_small
+    6400006: wall_small
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:

@@ -38,7 +38,7 @@ ModelImporter:
     6400006: arch_large
     6400008: wall_large
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
