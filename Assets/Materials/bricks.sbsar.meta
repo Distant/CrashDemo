@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6c16b44399c91404cbfbada015cc8632
-timeCreated: 1441019641
+timeCreated: 1441458510
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -23,7 +23,7 @@ SubstanceImporter:
     materialInformation:
       serializedVersion: 5
       offset: {x: 0, y: 0}
-      scale: {x: 1, y: 1}
+      scale: {x: 2, y: 2}
       generateMipmaps: 1
       generateAllOutputs: 0
       animationUpdateRate: 42
@@ -35,14 +35,14 @@ SubstanceImporter:
             name: _MainTex
           second:
             texture: {instanceID: 0}
-            scale: {x: 1, y: 1}
+            scale: {x: 2, y: 2}
             offset: {x: 0, y: 0}
         data:
           first:
             name: _BumpMap
           second:
             texture: {instanceID: 0}
-            scale: {x: 1, y: 1}
+            scale: {x: 2, y: 2}
             offset: {x: 0, y: 0}
         data:
           first:
@@ -91,7 +91,7 @@ SubstanceImporter:
             name: _MetallicGlossMap
           second:
             texture: {instanceID: 0}
-            scale: {x: 1, y: 1}
+            scale: {x: 2, y: 2}
             offset: {x: 0, y: 0}
       floats:
         data:
@@ -117,7 +117,7 @@ SubstanceImporter:
         data:
           first:
             name: _Parallax
-          second: .00499999989
+          second: .0203000009
         data:
           first:
             name: _ZWrite
@@ -144,15 +144,15 @@ SubstanceImporter:
           second: 0
         data:
           first:
+            name: _EmissionScaleUI
+          second: 0
+        data:
+          first:
             name: _Mode
           second: 0
         data:
           first:
             name: _Metallic
-          second: 0
-        data:
-          first:
-            name: _EmissionScaleUI
           second: 0
         data:
           first:

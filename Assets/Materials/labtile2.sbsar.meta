@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2da8127abc1a3fd4bb8dcfe29b67d962
-timeCreated: 1437328311
+timeCreated: 1441548334
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -24,7 +24,7 @@ SubstanceImporter:
       serializedVersion: 5
       offset: {x: 0, y: 0}
       scale: {x: 1, y: 1}
-      generateMipmaps: 1
+      generateMipmaps: 0
       generateAllOutputs: 0
       animationUpdateRate: 0
     materialProperties:
@@ -136,16 +136,16 @@ SubstanceImporter:
           second: 0
         data:
           first:
+            name: _EmissionScaleUI
+          second: 0
+        data:
+          first:
             name: _Mode
           second: 0
         data:
           first:
             name: _Metallic
           second: .130999997
-        data:
-          first:
-            name: _EmissionScaleUI
-          second: 0
       colors:
         data:
           first:
