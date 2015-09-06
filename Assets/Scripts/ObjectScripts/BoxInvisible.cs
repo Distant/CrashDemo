@@ -9,12 +9,6 @@ public class BoxInvisible : Box
 	{
         base.Start();
     } 
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
 
 	public override void HitPlayer(GameObject g, Vector3 point) {
         Enable();
