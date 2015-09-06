@@ -50,6 +50,8 @@ public class CharacterControl : MonoBehaviour
 	public bool slipping;
 	Vector3 simulateMovement;
 
+	private bool dead;
+
 	private CameraFollow cameraFollow;
 
 	private Vector3 inputDir;
@@ -65,6 +67,13 @@ public class CharacterControl : MonoBehaviour
 		cameraFollow = Camera.main.GetComponent<CameraFollow>();
 		levelManager = GameObject.FindGameObjectWithTag ("LevelManager").GetComponent<LevelManager> ();
 		initialPosition = transform.position;
+		StartCoroutine (StartLevel ());
+	}
+
+	IEnumerator StartLevel(){
+		canMove = false;
+		yield return new WaitForSeconds (animator.runtimeAnimatorController.animationClips [0].length + 0.1f);
+		canMove = true;
 	}
 
 	// Update is called once per frame
@@ -120,7 +129,7 @@ public class CharacterControl : MonoBehaviour
 		if (controller.isGrounded || IsGroundedManual) {	
 			if (!Input.GetButton ("Jump"))
 				canJump = true;
-			if (Input.GetButtonDown ("Jump") && canJump) {
+			if (Input.GetButtonDown ("Jump") && canJump && canMove) {
 				Jump (jumpSpeed);
 			}
 		}
@@ -256,7 +265,8 @@ public class CharacterControl : MonoBehaviour
 	public void Die ()
 	{
 		//transform.position = initialPosition;
-		levelManager.PlayerDeath ();
+		if (!dead) levelManager.PlayerDeath ();
+		dead = true;
 	}
 	
 	public void Stop ()
