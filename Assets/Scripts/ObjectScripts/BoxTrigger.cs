@@ -19,7 +19,7 @@ public class BoxTrigger : Box
         animator = GetComponent<Animator>();
     }
 
-    public void Update() {
+    public override void Update() {
 		base.Update ();
     }
 
@@ -28,7 +28,7 @@ public class BoxTrigger : Box
         if (repeatable ? !onCooldown : !activated)
         {
             base.OnBounce(above);
-            Trigger();
+			ActivateTrigger();
             animator.SetTrigger("bounce");
             levelManager.SoundManager.PlayClipAtPoint("box_trigger", transform.position, 0.05f);
         }
@@ -38,8 +38,8 @@ public class BoxTrigger : Box
     {
         if (repeatable ? !onCooldown : !activated)
         {
-            base.OnBounce(true);
-            Trigger();
+            base.Trigger();
+			ActivateTrigger();
             animator.SetTrigger("spin");
             levelManager.SoundManager.PlayClipAtPoint("box_trigger", transform.position, 0.05f);
             onCooldown = true;
@@ -48,7 +48,7 @@ public class BoxTrigger : Box
         }
     }
 
-    public void Trigger()
+    public void ActivateTrigger()
     {
         if (!activated && !repeatable)
         {
