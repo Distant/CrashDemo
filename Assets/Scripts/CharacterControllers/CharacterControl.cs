@@ -13,18 +13,10 @@ public class CharacterControl : MonoBehaviour
 	private Transform playerModel;
 	private CharacterController controller;
 	private LevelManager levelManager;
-	[SerializeField]
-	private float
-		moveSpeed = 2f;
-	[SerializeField]
-	private float
-		jumpSpeed = 2f;
-	[SerializeField]
-	private float
-		terminalVelocity = -8f;
-	[SerializeField]
-	private float
-		gravity = 24;
+	[SerializeField] private float moveSpeed = 2f;
+	[SerializeField] private float jumpSpeed = 2f;
+	[SerializeField] private float terminalVelocity = -8f;
+	[SerializeField] private float gravity = 24;
 	private Vector3 initialPosition;
 	private Vector3 velocity = Vector3.zero;
 
@@ -48,7 +40,7 @@ public class CharacterControl : MonoBehaviour
 	private bool canMove = true;
 	bool forceApplied;
 	public bool slipping;
-	Vector3 simulateMovement;
+	public Vector3 simulateMovement;
 
 	private bool dead;
 
@@ -97,7 +89,6 @@ public class CharacterControl : MonoBehaviour
 		} else {
 			x = Mathf.Lerp (velocity.x, inputDir.x * moveSpeed, 16 * Time.deltaTime);
 		}
-		
 
 		if (inputDir.z == 0) {
 			z = Mathf.Lerp (velocity.z, 0, s * Time.deltaTime);
@@ -109,8 +100,7 @@ public class CharacterControl : MonoBehaviour
 			g.rotation = Quaternion.Lerp (g.rotation, Quaternion.LookRotation (new Vector3 (inputDir.x, 0, inputDir.z)), 10 * Time.deltaTime);
 		}
 		
-		if (controller.isGrounded && !Jumping)
-			velocity.y = 0;
+		if (controller.isGrounded && !Jumping) velocity.y = 0;
 		velocity = new Vector3 (x, velocity.y, z);
 		velocity = transform.TransformDirection (velocity);
 		
@@ -319,6 +309,7 @@ public class CharacterControl : MonoBehaviour
 			}
 			yield return new WaitForSeconds (0.3f);
 			canMove = true;
+			simulateMovement = Vector3.zero;
 	}
 
 	public Bounds ControllerBounds { get { return controller.bounds; } }
