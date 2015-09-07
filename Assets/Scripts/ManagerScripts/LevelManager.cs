@@ -7,7 +7,6 @@ public class LevelManager : MonoBehaviour
 
     public GameObject BoxesObj;
     private Box[] boxes;
-    public Text image;
 
     private GameManager game;
 
@@ -36,7 +35,6 @@ public class LevelManager : MonoBehaviour
     {
         created = true;
         DontDestroyOnLoad(this.gameObject);
-        image.enabled = false;
 
         boxes = BoxesObj.GetComponentsInChildren<Box>();
         inventoryManager.init(boxes.Length);
@@ -73,9 +71,8 @@ public class LevelManager : MonoBehaviour
 
 	public void CleanUp(){
 		inventoryManager.VerifyBoxCount ();
-		image.enabled = true;
 		created = false;
-		Destroy (inventoryManager.inventoryPanel.parent.gameObject);
+		inventoryManager.Destroy ();
 		Destroy (this.gameObject);
 	}
 
